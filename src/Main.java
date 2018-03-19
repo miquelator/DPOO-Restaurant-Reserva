@@ -1,5 +1,6 @@
 import Controlador.VistaPrincipalController;
 import Model.GestioDades;
+import Network.ComunicacioServer;
 import Vista.VistaPrincipal;
 
 public class Main {
@@ -13,7 +14,11 @@ public class Main {
         VistaPrincipalController controller = new VistaPrincipalController(gestioDades,vistaPrincipal);
 
 
+
         vistaPrincipal.setVisible(true);
+
+        ComunicacioServer comunicacioServer = new ComunicacioServer();
+        comunicacioServer.start();
 
 
     }
