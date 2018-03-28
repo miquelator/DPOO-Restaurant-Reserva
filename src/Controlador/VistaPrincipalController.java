@@ -1,6 +1,8 @@
 package Controlador;
 
 import Model.GestioDades;
+import Network.ComunicacioServer;
+import Vista.VistaPlats;
 import Vista.VistaPrincipal;
 
 import javax.swing.*;
@@ -15,11 +17,16 @@ public class VistaPrincipalController implements ActionListener {
 
     private GestioDades gestioDades;
     private VistaPrincipal vistaPrincipal;
+    private VistaPlats vistaPlats;
+    private ComunicacioServer comunicacio;
 
-    public VistaPrincipalController(GestioDades g, VistaPrincipal v) {
+    public VistaPrincipalController(GestioDades g, VistaPrincipal v, VistaPlats vp, ComunicacioServer c) {
         gestioDades = g;
         vistaPrincipal = v;
         vistaPrincipal.linkejaController(this);
+        vistaPlats = vp;
+        vistaPlats.setController(this);
+        comunicacio = c;
 
     }
 
@@ -28,15 +35,17 @@ public class VistaPrincipalController implements ActionListener {
         //Mirem quin botó ha estat apretat
         String quinBoto = ((JButton) event.getSource()).getText();
 
-
         switch (quinBoto) {
-            case "Buy 1":
+            case "Autenticar-se al sistema":
 
                 break;
-            case "Buy 5":
+            case "Carta / Realitzar comanda":
                 break;
 
-            case "Buy 10":
+            case "Estat de la comanda":
+                break;
+
+            case "Pagar i marxar":
                 break;
 
         }

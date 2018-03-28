@@ -1,6 +1,7 @@
 import Controlador.VistaPrincipalController;
 import Model.GestioDades;
 import Network.ComunicacioServer;
+import Vista.VistaPlats;
 import Vista.VistaPrincipal;
 
 public class Main {
@@ -11,14 +12,19 @@ public class Main {
 
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
 
-        VistaPrincipalController controller = new VistaPrincipalController(gestioDades,vistaPrincipal);
+        VistaPlats vistaPlats = new VistaPlats();
 
 
 
-        vistaPrincipal.setVisible(true);
 
         ComunicacioServer comunicacioServer = new ComunicacioServer();
         comunicacioServer.start();
+
+
+        VistaPrincipalController controller = new VistaPrincipalController(gestioDades,vistaPrincipal, vistaPlats, comunicacioServer);
+
+        vistaPrincipal.setVisible(true);
+
 
 
     }
