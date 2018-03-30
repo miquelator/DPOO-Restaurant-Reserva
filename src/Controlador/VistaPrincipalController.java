@@ -37,15 +37,19 @@ public class VistaPrincipalController implements ActionListener {
 
         switch (quinBoto) {
             case "Autenticar-se al sistema":
-
+                comunicacio.autenticar();
                 break;
             case "Carta / Realitzar comanda":
+                vistaPlats.setVisible(true);
+                comunicacio.veureCarta();
                 break;
 
             case "Estat de la comanda":
+                comunicacio.veureEstat();
                 break;
 
             case "Pagar i marxar":
+                comunicacio.pagar();
                 break;
 
         }

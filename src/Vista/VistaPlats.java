@@ -83,7 +83,7 @@ public class VistaPlats extends JFrame{
 
         setSize(600,510);
         setTitle("DPO2-1718-PCS2-Client");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
 
