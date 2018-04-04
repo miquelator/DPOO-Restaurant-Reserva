@@ -17,7 +17,7 @@ public class ComunicacioServer extends Thread{
     private Socket socketServer;
     private   DataOutputStream outToServer;
 
-
+//bullshit
 
     public void run() {
         try {
