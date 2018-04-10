@@ -2,14 +2,12 @@ package Vista;
 
 
 
-import Controlador.VistaPlatsController;
-import Controlador.VistaPrincipalController;
+import Controlador.PlatsController;
 import Model.Carta;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class VistaPlats extends JFrame{
 /*
@@ -155,7 +153,7 @@ public class VistaPlats extends JFrame{
     }
 
 
-    public void setController (VistaPlatsController controller){
+    public void setController (PlatsController controller){
         serve.addActionListener(controller);
     }
 

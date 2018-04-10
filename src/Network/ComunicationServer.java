@@ -1,6 +1,6 @@
 package Network;
 
-import Controlador.VistaPrincipalController;
+import Controlador.PrincipalController;
 import Model.Carta;
 
 import java.io.DataOutputStream;
@@ -14,10 +14,10 @@ import java.util.ArrayList;
 /**
  * Created by miquelator on 19/3/18.
  */
-public class ComunicacioServer extends Thread{
+public class ComunicationServer extends Thread{
 
 
-    private VistaPrincipalController controller;
+    private Controlador.PrincipalController controller;
     private Socket socketServer;
     private DataOutputStream outToServer;
     private ObjectOutputStream ooStream;
@@ -40,15 +40,14 @@ public class ComunicacioServer extends Thread{
         }
     }
 
-    public   void autenticar (){
-
+    public boolean autenticar(String userName, String password){
         try {
             outToServer.writeUTF("AUTHENTICATE");
-
+            //TODO: COMPROBAR AL EL SERVIDOR SI LA INFORMACIO ES CORRECTA I RETORNAR UN BOOLEA CORRESPONENT
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }
-
+        return false;
     }
 
     public ArrayList<Carta> veureCarta (){
@@ -78,7 +77,7 @@ public class ComunicacioServer extends Thread{
 
     }
 
-    public void setController (VistaPrincipalController c){
+    public void setController (Controlador.PrincipalController c){
         controller = c;
     }
 
@@ -94,4 +93,5 @@ public class ComunicacioServer extends Thread{
         }
 
     }
+
 }

@@ -1,7 +1,7 @@
 package Vista;
 
 
-import Controlador.VistaPrincipalController;
+import Controlador.PrincipalController;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -105,7 +105,7 @@ public class VistaPrincipal extends JFrame{
                 null, options, options[0]);
     }
 
-    public void linkejaController (VistaPrincipalController c){
+    public void linkejaController (PrincipalController c){
         authenticate.addActionListener(c);
         order_status.addActionListener(c);
         menu.addActionListener(c);
