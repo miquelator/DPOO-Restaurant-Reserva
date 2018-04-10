@@ -27,32 +27,39 @@ public class VistaPrincipalController implements ActionListener {
         vistaPlats = vp;
         vistaPlats.setController(this);
         comunicacio = c;
+        c.setController(this);
 
     }
 
     public void actionPerformed(ActionEvent event) {
 
         //Mirem quin botó ha estat apretat
-        String quinBoto = ((JButton) event.getSource()).getText();
+        String quinBoto = event.getActionCommand();
 
         switch (quinBoto) {
-            case "Autenticar-se al sistema":
+            case VistaPrincipal.AUTHENTICATE:
                 comunicacio.autenticar();
                 break;
-            case "Carta / Realitzar comanda":
+            case VistaPrincipal.MENU:
                 vistaPlats.setVisible(true);
                 comunicacio.veureCarta();
                 break;
 
-            case "Estat de la comanda":
+            case VistaPrincipal.ORDER_STATUS:
                 comunicacio.veureEstat();
                 break;
 
-            case "Pagar i marxar":
+            case VistaPrincipal.PAY_EXIT:
                 comunicacio.pagar();
                 break;
-
+            case VistaPrincipal.EXIT:
+                System.exit(1);
+                break;
         }
 
+    }
+
+    public void mostraError(String errorMessage, String title) {
+        vistaPrincipal.mostraErrorServidor(errorMessage, title);
     }
 }

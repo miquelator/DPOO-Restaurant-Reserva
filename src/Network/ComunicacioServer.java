@@ -5,6 +5,7 @@ import Vista.VistaPrincipal;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 
 /**
@@ -22,8 +23,9 @@ public class ComunicacioServer extends Thread{
     public void run() {
         try {
             //creem el nostre socket
-
-            socketServer = new Socket("127.0.0.1", 33334);
+            InetAddress iAddress = InetAddress.getLocalHost();
+            String IP = iAddress.getHostAddress();
+            socketServer = new Socket(String.valueOf(IP), 33334);
             outToServer = new DataOutputStream(socketServer.getOutputStream());
 
 
@@ -37,8 +39,8 @@ public class ComunicacioServer extends Thread{
         try {
             outToServer.writeUTF("autenticar");
 
-        }catch (IOException e){
-
+        }catch (IOException | NullPointerException e){
+            controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }
 
     }
@@ -48,8 +50,9 @@ public class ComunicacioServer extends Thread{
         try {
             outToServer.writeUTF("veure carta");
 
-        }catch (IOException e){
-
+        }catch (IOException | NullPointerException e){
+            controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
+            //TODO: AMAGAR LA VISTA DE LA CARTA SI NO HI HA CONEXIO AL SERVIDOR?
         }
 
     }
@@ -58,8 +61,8 @@ public class ComunicacioServer extends Thread{
         try {
             outToServer.writeUTF("veure estat");
 
-        }catch (IOException e){
-
+        }catch (IOException | NullPointerException e){
+            controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }
 
     }
@@ -75,8 +78,8 @@ public class ComunicacioServer extends Thread{
         try {
             outToServer.writeUTF("pagar");
 
-        }catch (IOException e){
-
+        }catch (IOException | NullPointerException e){
+            controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }
 
     }
