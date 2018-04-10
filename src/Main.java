@@ -12,16 +12,11 @@ public class Main {
 
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
 
-        VistaPlats vistaPlats = new VistaPlats();
-
-
-
-
         ComunicacioServer comunicacioServer = new ComunicacioServer();
         comunicacioServer.start();
 
 
-        VistaPrincipalController controller = new VistaPrincipalController(gestioDades,vistaPrincipal, vistaPlats, comunicacioServer);
+        VistaPrincipalController controller = new VistaPrincipalController(gestioDades,vistaPrincipal, comunicacioServer);
 
         vistaPrincipal.setVisible(true);
 

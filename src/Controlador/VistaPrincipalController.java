@@ -17,15 +17,12 @@ public class VistaPrincipalController implements ActionListener {
 
     private GestioDades gestioDades;
     private VistaPrincipal vistaPrincipal;
-    private VistaPlats vistaPlats;
     private ComunicacioServer comunicacio;
 
-    public VistaPrincipalController(GestioDades g, VistaPrincipal v, VistaPlats vp, ComunicacioServer c) {
+    public VistaPrincipalController(GestioDades g, VistaPrincipal v, ComunicacioServer c) {
         gestioDades = g;
         vistaPrincipal = v;
         vistaPrincipal.linkejaController(this);
-        vistaPlats = vp;
-        vistaPlats.setController(this);
         comunicacio = c;
         c.setController(this);
 
@@ -41,8 +38,13 @@ public class VistaPrincipalController implements ActionListener {
                 comunicacio.autenticar();
                 break;
             case VistaPrincipal.MENU:
+                VistaPlats vistaPlats = new VistaPlats();
+                VistaPlatsController vistaPrincipalController = new VistaPlatsController(vistaPlats);
+                vistaPlats.setController(vistaPrincipalController);
+                vistaPlats.drawInfo(comunicacio.veureCarta());
+                vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);
-                comunicacio.veureCarta();
+
                 break;
 
             case VistaPrincipal.ORDER_STATUS:
