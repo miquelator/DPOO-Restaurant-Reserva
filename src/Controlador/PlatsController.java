@@ -15,8 +15,12 @@ public class PlatsController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
-            case VistaPlats.SERVE:
-                System.out.println("servir comanda");
+            case VistaPlats.DELETE:
+                System.out.println("borra comanda");
+                break;
+
+            case VistaPlats.DO_ORDER:
+                System.out.println("fes comanda");
                 break;
         }
     }

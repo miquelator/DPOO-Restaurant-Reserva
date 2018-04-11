@@ -50,10 +50,11 @@ public class ComunicationServer extends Thread{
         return false;
     }
 
-    public ArrayList<Carta> veureCarta (){
+    public ArrayList<Carta> veureCarta(int seleccio){
 
         try {
             outToServer.writeUTF("SHOW_MENU");
+            outToServer.writeInt(seleccio);
 
             ArrayList<Carta> carta = (ArrayList<Carta>) oiStream.readObject();
             return carta;

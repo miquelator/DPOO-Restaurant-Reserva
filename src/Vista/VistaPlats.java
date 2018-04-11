@@ -4,95 +4,27 @@ package Vista;
 
 import Controlador.PlatsController;
 import Model.Carta;
+import Model.JTableModel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 public class VistaPlats extends JFrame{
-/*
-    private JLabel user,products, llistaComandes;
-    private JPanel aux, centre, panelComandes, esquerra, dreta, userPane, productsPane, sendPane;
-    private JSplitPane total;
-    private JScrollPane dretaScroll;
-    private JTextField userText;
-    private JComboBox<String> productsList;
-    private JButton sendButton;
-
-*/
-    private JButton serve;
-    private JLabel label;
-    private JLabel user;
+    private JButton delete;
+    private JButton doOrder;
     private JLabel product;
     private JPanel right;
     private JSplitPane jSplitPane;
+    private JTable comanda;
+    private JTabbedPane carta;
 
-    public final static String SERVE = "Serve";
+    public final static String DELETE = "Esborra";
+    public final static String DO_ORDER = "Fes comanda";
 
     public VistaPlats (){
-/*
-        user = new JLabel("Username");
-        products = new JLabel("Products:");
-        userText = new JTextField(14);
-
-        sendPane = new JPanel();
-        sendPane.setLayout(new BorderLayout());
-        sendButton = new JButton("Send");
-
-
-        sendPane.add(sendButton,BorderLayout.CENTER);
-
-
-        ArrayList<String> llista;
-
-        productsList = new JComboBox<String>();
-        productsList.addItem("Cafè");
-        productsList.addItem("Tallat");
-        productsList.addItem("Cafè amb llet");
-        productsList.addItem("Cafè amb llet de soja");
-        productsList.addItem("Cigalò");
-
-
-        userPane = new JPanel();
-        userPane.add(user);
-        userPane.add(userText);
-
-        productsPane = new JPanel();
-        productsPane.add(products);
-        productsPane.add(productsList);
-
-        centre = new JPanel(new GridLayout(3,1));
-        centre.add(userPane);
-        centre.add(productsPane);
-        centre.add(sendPane);
-
-        aux = new JPanel();
-
-        esquerra = new JPanel(new GridLayout(3,1));
-        esquerra.add(aux);
-        esquerra.add(centre);
-        esquerra.setBorder(BorderFactory.createTitledBorder("Order"));
-
-        llistaComandes = new JLabel("");
-        panelComandes = new JPanel(new BorderLayout());
-        panelComandes.add(llistaComandes, BorderLayout.WEST);
-
-        dreta = new JPanel(new BorderLayout());
-        dreta.add(panelComandes, BorderLayout.NORTH);
-        dreta.setBorder(BorderFactory.createTitledBorder("Waiting queue"));
-
-        dretaScroll = new JScrollPane(dreta);
-        total = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
-                esquerra, dretaScroll);
-
-        total.setDividerLocation(300);
-
-
-
-        getContentPane().add(total);
-*/
-        setSize(600,510);
-        setTitle("DPO2-1718-PCS2-Client");
+        setSize(800,500);
+        setTitle("Carta");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         populateView();
     }
@@ -101,60 +33,47 @@ public class VistaPlats extends JFrame{
      * Fills view with components
      */
     private void populateView() {
-        JPanel left = new JPanel(new GridBagLayout());
-        right = new JPanel();
-        right.setLayout(new BoxLayout(right, BoxLayout.Y_AXIS));
-        right.setAlignmentX(Component.LEFT_ALIGNMENT);
-        JScrollPane scrollPane = new JScrollPane(right);
+        JPanel east = new JPanel(new BorderLayout());
+        comanda = new JTable(new JTableModel());
+        comanda.getTableHeader().setReorderingAllowed(false);
+        delete = new JButton(DELETE);
+        doOrder = new JButton(DO_ORDER);
+        east.add(comanda, BorderLayout.CENTER);
+        JPanel southEast = new JPanel(new GridLayout(1,2));
+        JPanel deleteAux = new JPanel();
+        JPanel doOrderAux = new JPanel();
+        deleteAux.add(delete);
+        doOrderAux.add(doOrder);
+        southEast.add(deleteAux);
+        southEast.add(doOrderAux);
+        east.add(southEast, BorderLayout.SOUTH);
 
-        left.setBorder(BorderFactory.createTitledBorder("Order"));
-        right.setBorder(BorderFactory.createTitledBorder("Waiting queue"));
+        carta = new JTabbedPane();
 
-        serve = new JButton(SERVE);
-        serve.setActionCommand(SERVE);
-        JLabel userName = new JLabel("User name:");
-        user = new JLabel("-");
-        JLabel productName = new JLabel("Product:");
-        product = new JLabel("-");
-
-        GridBagConstraints constraints = new GridBagConstraints();
-
-        constraints.weightx = 0.1;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.insets = new Insets(20,0,0,0);
-        left.add(userName, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        left.add(user, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        left.add(productName, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 1;
-        left.add(product, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.gridwidth = 2;
-        left.add(serve, constraints);
-
-        label = new JLabel("Pending orders: 0");
-
-        right.add(label);
-
-        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, left, scrollPane);
-        jSplitPane.setDividerLocation(250);
+        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, populateCarta(), east);
+        jSplitPane.setDividerLocation(500);
         setContentPane(jSplitPane);
+    }
+
+    private JTabbedPane populateCarta() {
+        ImageIcon icon = new ImageIcon("java-swing-tutorial.JPG");
+
+        carta.addTab("Primer", icon, generateTabView(), "Tab 1");
+        carta.addTab("Segon", icon, generateTabView(), "Tab 2");
+        carta.addTab("Postre", icon, generateTabView(), "Tab 3");
+        carta.addTab("Begudes", icon, generateTabView(), "Tab 4");
+
+        return carta;
+    }
+
+    private JPanel generateTabView() {
+        return null;
     }
 
 
     public void setController (PlatsController controller){
-        serve.addActionListener(controller);
+        delete.addActionListener(controller);
+        doOrder.addActionListener(controller);
     }
 
     public void drawInfo(ArrayList<Carta> cartas) {

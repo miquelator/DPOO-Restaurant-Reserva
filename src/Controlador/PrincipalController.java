@@ -45,7 +45,7 @@ public class PrincipalController implements ActionListener {
                 VistaPlats vistaPlats = new VistaPlats();
                 PlatsController vistaPrincipalController = new PlatsController(vistaPlats);
                 vistaPlats.setController(vistaPrincipalController);
-                vistaPlats.drawInfo(comunicacio.veureCarta());
+                vistaPlats.drawInfo(comunicacio.veureCarta(1));
                 vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);
 
