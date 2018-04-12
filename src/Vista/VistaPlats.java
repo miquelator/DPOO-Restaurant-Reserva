@@ -21,6 +21,7 @@ public class VistaPlats extends JFrame{
 
     public final static String DELETE = "Esborra";
     public final static String DO_ORDER = "Fes comanda";
+    public final static String SERVE = "Serve";
 
     public VistaPlats (){
         setSize(800,500);
@@ -77,6 +78,14 @@ public class VistaPlats extends JFrame{
     }
 
     public void drawInfo(ArrayList<Carta> cartas) {
+
+        for (Carta carta :cartas){
+
+            JButton aux = new JButton(carta.getNomPlat());
+            right.add(aux);
+
+
+        }
 
     }
 }

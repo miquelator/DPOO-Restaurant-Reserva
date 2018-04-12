@@ -43,8 +43,8 @@ public class PrincipalController implements ActionListener {
                 break;
             case VistaPrincipal.MENU:
                 VistaPlats vistaPlats = new VistaPlats();
-                PlatsController vistaPrincipalController = new PlatsController(vistaPlats);
-                vistaPlats.setController(vistaPrincipalController);
+                PlatsController platsController = new PlatsController(vistaPlats);
+                vistaPlats.setController(platsController);
                 vistaPlats.drawInfo(comunicacio.veureCarta(1));
                 vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);

@@ -3,10 +3,7 @@ package Network;
 import Controlador.PrincipalController;
 import Model.Carta;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -20,6 +17,7 @@ public class ComunicationServer extends Thread{
     private Controlador.PrincipalController controller;
     private Socket socketServer;
     private DataOutputStream outToServer;
+    private DataInputStream inToServer;
     private ObjectOutputStream ooStream;
     private ObjectInputStream oiStream;
 
@@ -32,6 +30,7 @@ public class ComunicationServer extends Thread{
             String IP = iAddress.getHostAddress();
             socketServer = new Socket(String.valueOf(IP), 33334);
             outToServer = new DataOutputStream(socketServer.getOutputStream());
+            inToServer = new DataInputStream(socketServer.getInputStream());
             ooStream = new ObjectOutputStream(socketServer.getOutputStream());
             oiStream = new ObjectInputStream(socketServer.getInputStream());
 
@@ -43,6 +42,13 @@ public class ComunicationServer extends Thread{
     public boolean autenticar(String userName, String password){
         try {
             outToServer.writeUTF("AUTHENTICATE");
+            outToServer.writeUTF(userName);
+            outToServer.writeUTF(password);
+
+            boolean b = inToServer.readBoolean();
+
+            System.out.println(b);
+
             //TODO: COMPROBAR AL EL SERVIDOR SI LA INFORMACIO ES CORRECTA I RETORNAR UN BOOLEA CORRESPONENT
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
