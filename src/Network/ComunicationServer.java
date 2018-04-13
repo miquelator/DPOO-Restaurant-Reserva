@@ -47,9 +47,8 @@ public class ComunicationServer extends Thread{
 
             boolean b = inToServer.readBoolean();
 
-            System.out.println(b);
+            return  b;
 
-            //TODO: COMPROBAR AL EL SERVIDOR SI LA INFORMACIO ES CORRECTA I RETORNAR UN BOOLEA CORRESPONENT
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }

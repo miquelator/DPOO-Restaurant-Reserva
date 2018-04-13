@@ -26,6 +26,9 @@ public class LoginController implements ActionListener {
                     }else {
                         if (parent.validateAuthentication(loginView.getUserName(), loginView.getPassword())){
                             loginView.mostraInformacioServidor("Autenticació correcta.", "INFORMACIO");
+                            loginView.setVisible(false);
+                            parent.setViewEnabled(true);
+                            //TODO: PERMETRE VEURE LA CARTA SI LA VALIDACIO ES CORRECTA
                         }else {
                             loginView.setLoginError("Error a l'hora de validar la informacio. Revisa que els camps siguin correctes.", "ERROR");
                         }

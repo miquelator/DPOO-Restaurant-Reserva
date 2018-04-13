@@ -8,13 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class VistaPrincipal extends JFrame{
-/*
-    private JPanel total;
-    private JButton autentica;
-    private JButton veureCarta;
-    private JButton veureEstat;
-    private JButton paga;
-*/
+
     private JButton authenticate;
     private JButton menu;
     private JButton order_status;
@@ -37,25 +31,7 @@ public class VistaPrincipal extends JFrame{
         dimension.width = 600;
         setMinimumSize(dimension);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        /*
-        total = new JPanel();
-        total.setLayout(new GridLayout(2,2));
 
-        autentica = new JButton("Autenticar-se al sistema");
-        veureCarta = new JButton("Carta / Realitzar comanda");
-        veureEstat = new JButton("Estat de la comanda");
-        paga = new JButton("Pagar i marxar");
-
-        total.add(autentica);
-        total.add(veureCarta);
-        total.add(veureEstat);
-        total.add(paga);
-
-        getContentPane().add(total);
-
-        setSize(750,510);
-        setTitle("Reserva");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
 
     }
 
@@ -72,9 +48,15 @@ public class VistaPrincipal extends JFrame{
 
         authenticate = new JButton(AUTHENTICATE);
         menu = new JButton(MENU);
+        menu.setEnabled(false);
         order_status = new JButton(ORDER_STATUS);
         pay_exit = new JButton(PAY_EXIT);
         exit = new JButton(EXIT);
+
+        menu.setEnabled(false);
+        pay_exit.setEnabled(false);
+        order_status.setEnabled(false);
+
 
         authenticate.setFont(new Font("Arial", Font.PLAIN, 30));
         menu.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -111,5 +93,12 @@ public class VistaPrincipal extends JFrame{
         menu.addActionListener(c);
         pay_exit.addActionListener(c);
         exit.addActionListener(c);
+    }
+
+    public void setEnabledBotons (boolean b){
+
+        menu.setEnabled(true);
+        pay_exit.setEnabled(true);
+        order_status.setEnabled(true);
     }
 }

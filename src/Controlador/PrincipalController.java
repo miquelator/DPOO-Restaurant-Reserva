@@ -70,6 +70,13 @@ public class PrincipalController implements ActionListener {
     }
 
     public boolean validateAuthentication(String userName, char[] password) {
-        return comunicacio.autenticar(userName, String.valueOf(password));
+        boolean b = comunicacio.autenticar(userName, String.valueOf(password));
+        vistaPrincipal.setEnabledBotons(b);
+
+        return b;
+    }
+
+    public void setViewEnabled(boolean b) {
+        vistaPrincipal.setVisible(b);
     }
 }
