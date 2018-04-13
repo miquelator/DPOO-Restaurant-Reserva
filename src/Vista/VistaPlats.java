@@ -2,6 +2,7 @@ package Vista;
 
 
 
+import Controlador.PlatsChangeController;
 import Controlador.PlatsController;
 import Model.Carta;
 import Model.JTableModel;
@@ -51,41 +52,57 @@ public class VistaPlats extends JFrame{
 
         carta = new JTabbedPane();
 
-        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, populateCarta(), east);
+        jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, createTabbedPane(), east);
         jSplitPane.setDividerLocation(500);
         setContentPane(jSplitPane);
     }
 
-    private JTabbedPane populateCarta() {
+    private JTabbedPane createTabbedPane() {
         ImageIcon icon = new ImageIcon("java-swing-tutorial.JPG");
 
-        carta.addTab("Primer", icon, generateTabView(), "Tab 1");
-        carta.addTab("Segon", icon, generateTabView(), "Tab 2");
-        carta.addTab("Postre", icon, generateTabView(), "Tab 3");
-        carta.addTab("Begudes", icon, generateTabView(), "Tab 4");
+        carta.addTab("Primer", icon, null, "Tab 1");
+        carta.addTab("Segon", icon, null, "Tab 2");
+        carta.addTab("Postre", icon, null, "Tab 3");
+        carta.addTab("Begudes", icon, null, "Tab 4");
 
         return carta;
     }
 
-    private JPanel generateTabView() {
-        return null;
-    }
-
-
-    public void setController (PlatsController controller){
+    public void setController(PlatsController controller, PlatsChangeController platsChangeController){
         delete.addActionListener(controller);
         doOrder.addActionListener(controller);
+        carta.addChangeListener(platsChangeController);
     }
 
-    public void drawInfo(ArrayList<Carta> cartas) {
+    public void drawInfo(ArrayList<Carta> cartes, int tab) {
+        try{
+            JPanel left = new JPanel(new GridLayout(cartes.size(),1));
+            for (Carta carta :cartes){
+                System.out.println(carta.toString());
+                left.add(createMenuRow(carta));
 
-        for (Carta carta :cartas){
-
-            JButton aux = new JButton(carta.getNomPlat());
-            right.add(aux);
-
+            }
+            carta.setComponentAt(tab, left);
+            setContentPane(jSplitPane);
+        }catch (NullPointerException ignored){
 
         }
+    }
 
+    private JPanel createMenuRow(Carta carta) {
+        JPanel menuRow = new JPanel();
+        JLabel itemName = new JLabel(carta.getNomPlat());
+        JPanel rightSideMenuRow = new JPanel(new GridLayout(1,2));
+        JButton add = new JButton("Afegeix");
+        JLabel price = new JLabel(String.valueOf(carta.getPreu()));
+        rightSideMenuRow.add(price);
+        rightSideMenuRow.add(add);
+        menuRow.add(itemName);
+        menuRow.add(rightSideMenuRow);
+        return menuRow;
+    }
+
+    public int getSelectedTab() {
+        return carta.getSelectedIndex();
     }
 }

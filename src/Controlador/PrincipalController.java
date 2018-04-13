@@ -39,13 +39,14 @@ public class PrincipalController implements ActionListener {
                 loginView.registerController(loginController);
                 vistaPrincipal.setVisible(false);
                 loginView.setVisible(true);
-
                 break;
+
             case VistaPrincipal.MENU:
                 VistaPlats vistaPlats = new VistaPlats();
                 PlatsController platsController = new PlatsController(vistaPlats);
-                vistaPlats.setController(platsController);
-                vistaPlats.drawInfo(comunicacio.veureCarta(1));
+                PlatsChangeController platsChangeController = new PlatsChangeController(vistaPlats, comunicacio);
+                vistaPlats.setController(platsController, platsChangeController);
+                vistaPlats.drawInfo(comunicacio.veureCarta(1), 0);
                 vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);
 

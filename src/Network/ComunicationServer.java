@@ -1,6 +1,5 @@
 package Network;
 
-import Controlador.PrincipalController;
 import Model.Carta;
 
 import java.io.*;
@@ -21,7 +20,6 @@ public class ComunicationServer extends Thread{
     private ObjectOutputStream ooStream;
     private ObjectInputStream oiStream;
 
-//bullshit
 
     public void run() {
         try {
@@ -55,8 +53,8 @@ public class ComunicationServer extends Thread{
         return false;
     }
 
-    public ArrayList<Carta> veureCarta(int seleccio){
 
+    public ArrayList<Carta> veureCarta(int seleccio){
         try {
             outToServer.writeUTF("SHOW_MENU");
             outToServer.writeInt(seleccio);
@@ -65,13 +63,13 @@ public class ComunicationServer extends Thread{
             return carta;
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
-            //TODO: AMAGAR LA VISTA DE LA CARTA SI NO HI HA CONEXIO AL SERVIDOR?
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return null;
     }
+
+
     public   void veureEstat (){
 
         try {
