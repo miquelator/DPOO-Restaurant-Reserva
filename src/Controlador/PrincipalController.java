@@ -1,5 +1,6 @@
 package Controlador;
 
+import Model.Carta;
 import Model.GestioDades;
 import Network.ComunicationServer;
 import Vista.LoginView;
@@ -8,6 +9,7 @@ import Vista.VistaPrincipal;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  * Created by miquelator on 16/3/18.
@@ -42,11 +44,13 @@ public class PrincipalController implements ActionListener {
                 break;
 
             case VistaPrincipal.MENU:
+                ArrayList<Carta> carta = comunicacio.veureCarta(1);
                 VistaPlats vistaPlats = new VistaPlats();
                 PlatsController platsController = new PlatsController(vistaPlats);
-                PlatsChangeController platsChangeController = new PlatsChangeController(vistaPlats, comunicacio);
+                platsController.setCurrentCarta(carta);
+                PlatsChangeController platsChangeController = new PlatsChangeController(vistaPlats, comunicacio, platsController);
                 vistaPlats.setController(platsController, platsChangeController);
-                vistaPlats.drawInfo(comunicacio.veureCarta(1), 0);
+                vistaPlats.drawInfo(carta, 0);
                 vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);
 
@@ -68,6 +72,7 @@ public class PrincipalController implements ActionListener {
 
     public void mostraError(String errorMessage, String title) {
         vistaPrincipal.mostraErrorServidor(errorMessage, title);
+        System.exit(1);
     }
 
     public boolean validateAuthentication(String userName, char[] password) {

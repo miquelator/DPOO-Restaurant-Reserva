@@ -5,29 +5,36 @@ package Vista;
 import Controlador.PlatsChangeController;
 import Controlador.PlatsController;
 import Model.Carta;
+import Model.CartaSelection;
 import Model.JTableModel;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
 
 public class VistaPlats extends JFrame{
+    private PlatsController controller;
+
     private JButton delete;
     private JButton doOrder;
-    private JLabel product;
-    private JPanel right;
     private JSplitPane jSplitPane;
-    private JTable comanda;
+    private JTable comandesTable;
     private JTabbedPane carta;
 
+    private ArrayList<JButton> arrayButtons;
+
     public final static String DELETE = "Esborra";
-    public final static String DO_ORDER = "Fes comanda";
+    public final static String DO_ORDER = "Fes comandesTable";
     public final static String SERVE = "Serve";
 
     public VistaPlats (){
-        setSize(800,500);
+        setSize(1000,500);
         setTitle("Carta");
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setLocationRelativeTo(null);
         populateView();
     }
 
@@ -36,11 +43,12 @@ public class VistaPlats extends JFrame{
      */
     private void populateView() {
         JPanel east = new JPanel(new BorderLayout());
-        comanda = new JTable(new JTableModel());
-        comanda.getTableHeader().setReorderingAllowed(false);
+        comandesTable = new JTable(new JTableModel());
+        comandesTable.getTableHeader().setReorderingAllowed(false);
+        createEmptyTable();
         delete = new JButton(DELETE);
         doOrder = new JButton(DO_ORDER);
-        east.add(comanda, BorderLayout.CENTER);
+        east.add(comandesTable, BorderLayout.CENTER);
         JPanel southEast = new JPanel(new GridLayout(1,2));
         JPanel deleteAux = new JPanel();
         JPanel doOrderAux = new JPanel();
@@ -57,6 +65,17 @@ public class VistaPlats extends JFrame{
         setContentPane(jSplitPane);
     }
 
+    private void createEmptyTable() {
+        DefaultTableModel model = (DefaultTableModel) comandesTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(0);
+
+        model.addColumn("Nom del plat");
+        model.addColumn("Nombre d'unitats");
+        model.addColumn("Preu unitari");
+        model.addColumn("Preu total");
+    }
+
     private JTabbedPane createTabbedPane() {
         ImageIcon icon = new ImageIcon("java-swing-tutorial.JPG");
 
@@ -68,24 +87,18 @@ public class VistaPlats extends JFrame{
         return carta;
     }
 
-    public void setController(PlatsController controller, PlatsChangeController platsChangeController){
-        delete.addActionListener(controller);
-        doOrder.addActionListener(controller);
-        carta.addChangeListener(platsChangeController);
-    }
 
     public void drawInfo(ArrayList<Carta> cartes, int tab) {
         try{
             JPanel left = new JPanel(new GridLayout(cartes.size(),1));
+            arrayButtons = new ArrayList<>();
             for (Carta carta :cartes){
-                System.out.println(carta.toString());
                 left.add(createMenuRow(carta));
-
             }
             carta.setComponentAt(tab, left);
             setContentPane(jSplitPane);
+            updateControllers();
         }catch (NullPointerException ignored){
-
         }
     }
 
@@ -93,16 +106,58 @@ public class VistaPlats extends JFrame{
         JPanel menuRow = new JPanel();
         JLabel itemName = new JLabel(carta.getNomPlat());
         JPanel rightSideMenuRow = new JPanel(new GridLayout(1,2));
-        JButton add = new JButton("Afegeix");
-        JLabel price = new JLabel(String.valueOf(carta.getPreu()));
+        JButton addButton = new JButton("Afegeix");
+        addButton.setActionCommand("Afegeix#" + carta.getNomPlat());
+        JLabel price = new JLabel(String.valueOf(carta.getPreu()) + " €");
+
         rightSideMenuRow.add(price);
-        rightSideMenuRow.add(add);
+        rightSideMenuRow.add(addButton);
         menuRow.add(itemName);
         menuRow.add(rightSideMenuRow);
+        arrayButtons.add(addButton);
         return menuRow;
     }
 
     public int getSelectedTab() {
         return carta.getSelectedIndex();
+    }
+
+    private void updateControllers(){
+        for (JButton buttons: arrayButtons){
+            buttons.addActionListener(controller);
+        }
+    }
+
+    public void setController(PlatsController controller, PlatsChangeController platsChangeController){
+        this.controller = controller;
+        delete.addActionListener(controller);
+        doOrder.addActionListener(controller);
+        carta.addChangeListener(platsChangeController);
+    }
+
+
+    public void addDishToOrder(ArrayList<CartaSelection> selectedItems) {
+        DefaultTableModel model = (DefaultTableModel) comandesTable.getModel();
+        model.setRowCount(0);
+        model.setColumnCount(0);
+
+        model.addColumn("Nom plat");
+        model.addColumn("Nombre d'unitats");
+        model.addColumn("Preu unitari");
+        model.addColumn("Preu total");
+
+        for (int i = 0; i < selectedItems.size(); i++){
+            Vector<String> nomPlat = new Vector(Arrays.asList(selectedItems.get(i).getNomPlat()));
+            Vector<String> unitats = new Vector(Arrays.asList(selectedItems.get(i).getUnitatsDemanades()));
+            Vector<String> preuPlat = new Vector(Arrays.asList(selectedItems.get(i).getPreu()));
+            Vector<String> preuTotal = new Vector(Arrays.asList(selectedItems.get(i).getPreuTotal()));
+
+            Vector<Object> row = new Vector<Object>();
+            row.addElement(nomPlat.get(0));
+            row.addElement(unitats.get(0));
+            row.addElement(String.valueOf(preuPlat.get(0)) + "€");
+            row.addElement(String.valueOf(preuTotal.get(0)) + "€");
+            model.addRow(row);
+        }
     }
 }
