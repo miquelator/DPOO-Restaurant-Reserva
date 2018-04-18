@@ -28,7 +28,7 @@ public class VistaPlats extends JFrame{
 
     public final static String DELETE = "Esborra";
     public final static String DO_ORDER = "Fes comandesTable";
-    public final static String SERVE = "Serve";
+    public final static String ADD = "Afegeix";
 
     public VistaPlats (){
         setSize(1000,500);
@@ -106,8 +106,8 @@ public class VistaPlats extends JFrame{
         JPanel menuRow = new JPanel();
         JLabel itemName = new JLabel(carta.getNomPlat());
         JPanel rightSideMenuRow = new JPanel(new GridLayout(1,2));
-        JButton addButton = new JButton("Afegeix");
-        addButton.setActionCommand("Afegeix#" + carta.getNomPlat());
+        JButton addButton = new JButton(ADD);
+        addButton.setActionCommand(ADD + "#" + carta.getNomPlat());
         JLabel price = new JLabel(String.valueOf(carta.getPreu()) + " €");
 
         rightSideMenuRow.add(price);
@@ -141,6 +141,7 @@ public class VistaPlats extends JFrame{
         model.setRowCount(0);
         model.setColumnCount(0);
 
+        //TODO: FER QUE ES MOSTRIN EL NOMS DE LES COMLUMNES, FICAR EL JTABLE DINS D'UN JSCROLL PANE I ARREGLAR LA PART ESQUERRA DE LA VISTA (CARTA)
         model.addColumn("Nom plat");
         model.addColumn("Nombre d'unitats");
         model.addColumn("Preu unitari");
@@ -160,4 +161,18 @@ public class VistaPlats extends JFrame{
             model.addRow(row);
         }
     }
+
+    public CartaSelection getSelectedOrder() {
+        try {
+            return new CartaSelection(comandesTable.getModel().getValueAt(comandesTable.getSelectedRow(), 0).toString(),
+                    Float.parseFloat(comandesTable.getModel().getValueAt(comandesTable.getSelectedRow(), 2).toString().replace("€", "")),
+                    Integer.parseInt(comandesTable.getModel().getValueAt(comandesTable.getSelectedRow(), 1).toString()),
+                    Float.parseFloat(comandesTable.getModel().getValueAt(comandesTable.getSelectedRow(), 3).toString().replace("€", "")));
+
+        }catch (ArrayIndexOutOfBoundsException ignored){
+
+        }
+        return null;
+    }
+
 }

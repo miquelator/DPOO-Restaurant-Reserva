@@ -25,6 +25,9 @@ public class PlatsController implements ActionListener {
         String[] aux = e.getActionCommand().split("#");
         switch (aux[0]){
             case VistaPlats.DELETE:
+                if (vistaPlats.getSelectedOrder() != null){
+                    deleteOrder(vistaPlats.getSelectedOrder());
+                }
                 System.out.println("borra comanda");
                 break;
 
@@ -32,10 +35,25 @@ public class PlatsController implements ActionListener {
                 System.out.println("fes comanda");
                 break;
 
-            case "Afegeix":
+            case VistaPlats.ADD:
                 afegeix(aux[1]);
                 break;
         }
+    }
+
+    private void deleteOrder(CartaSelection selectedOrder) {
+        int size = selectedItems.size();
+        for (int i = 0; i < size; i++){
+            if (selectedItems.get(i).getNomPlat().equals(selectedOrder.getNomPlat()) && selectedItems.get(i).getUnitatsDemanades() > 1){
+                selectedItems.get(i).setPreuTotal(selectedItems.get(i).getPreuTotal() - selectedItems.get(i).getPreu());
+                selectedItems.get(i).setUnitatsDemanades(selectedItems.get(i).getUnitatsDemanades() - 1);
+            }else if (selectedItems.get(i).getNomPlat().equals(selectedOrder.getNomPlat()) && selectedItems.get(i).getUnitatsDemanades() == 1){
+                System.out.println("borro el " + selectedOrder.toString());
+                selectedItems.remove(i);
+                size--;
+            }
+        }
+        vistaPlats.addDishToOrder(selectedItems);
     }
 
     private void afegeix(String nomPlat) {
