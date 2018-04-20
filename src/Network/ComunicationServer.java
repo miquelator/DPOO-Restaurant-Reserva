@@ -1,6 +1,7 @@
 package Network;
 
 import Model.Carta;
+import Model.ConfigJson;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -19,14 +20,17 @@ public class ComunicationServer extends Thread{
     private DataInputStream inToServer;
     private ObjectOutputStream ooStream;
     private ObjectInputStream oiStream;
+    private ConfigJson configJson;
 
 
+    public ComunicationServer (ConfigJson c){
+        configJson = c;
+    }
     public void run() {
         try {
             //creem el nostre socket
-            InetAddress iAddress = InetAddress.getLocalHost();
-            String IP = iAddress.getHostAddress();
-            socketServer = new Socket(String.valueOf(IP), 33334);
+
+            socketServer = new Socket(configJson.getIp(), configJson.getPort_server());
             outToServer = new DataOutputStream(socketServer.getOutputStream());
             inToServer = new DataInputStream(socketServer.getInputStream());
             ooStream = new ObjectOutputStream(socketServer.getOutputStream());

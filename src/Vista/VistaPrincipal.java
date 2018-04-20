@@ -96,8 +96,10 @@ public class VistaPrincipal extends JFrame{
     }
 
     public void setEnabledBotons (boolean b){
-        menu.setEnabled(true);
-        pay_exit.setEnabled(true);
-        order_status.setEnabled(true);
+
+        authenticate.setEnabled(!b);
+        menu.setEnabled(b);
+        pay_exit.setEnabled(b);
+        order_status.setEnabled(b);
     }
 }
