@@ -60,7 +60,7 @@ public class ComunicationServer extends Thread{
 
     public void enviaComanda (ArrayList<CartaSelection> cartaSelection){
         try{
-            outToServer.writeUTF("SHOW_MENU");
+            outToServer.writeUTF("ORDER");
             ooStream.writeObject(cartaSelection);
         }catch (IOException e){
 

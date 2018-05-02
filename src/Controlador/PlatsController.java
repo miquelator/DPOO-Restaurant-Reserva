@@ -15,12 +15,22 @@ public class PlatsController implements ActionListener {
     private ArrayList<CartaSelection> selectedItems;
     private ComunicationServer comunicationServer;
 
+    /**
+     * Contructor for current class
+     * @param vistaPlats View linked to this controller class
+     * @param c communication instance for server information exchange
+     */
     public PlatsController(VistaPlats vistaPlats, ComunicationServer c) {
         this.vistaPlats = vistaPlats;
         selectedItems = new ArrayList<>();
         comunicationServer = c;
     }
 
+
+    /**
+     * Executes depending upon selected window
+     * @param e Event thrown when window is changed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String[] aux = e.getActionCommand().split("#");
@@ -29,7 +39,6 @@ public class PlatsController implements ActionListener {
                 if (vistaPlats.getSelectedOrder() != null){
                     deleteOrder(vistaPlats.getSelectedOrder());
                 }
-                System.out.println("borra comanda");
                 break;
 
             case VistaPlats.DO_ORDER:
@@ -42,21 +51,36 @@ public class PlatsController implements ActionListener {
         }
     }
 
+    /**
+     * Deletes and updates order's table
+     * @param selectedOrder Model containing all current info from customer's order
+     */
     private void deleteOrder(CartaSelection selectedOrder) {
         int size = selectedItems.size();
+        int selected = -1;
+        boolean flag = false;
         for (int i = 0; i < size; i++){
             if (selectedItems.get(i).getNomPlat().equals(selectedOrder.getNomPlat()) && selectedItems.get(i).getUnitatsDemanades() > 1){
+                selected = vistaPlats.getSelectedOrderIndex();
                 selectedItems.get(i).setPreuTotal(selectedItems.get(i).getPreuTotal() - selectedItems.get(i).getPreu());
                 selectedItems.get(i).setUnitatsDemanades(selectedItems.get(i).getUnitatsDemanades() - 1);
+                flag = true;
             }else if (selectedItems.get(i).getNomPlat().equals(selectedOrder.getNomPlat()) && selectedItems.get(i).getUnitatsDemanades() == 1){
-                System.out.println("borro el " + selectedOrder.toString());
                 selectedItems.remove(i);
                 size--;
+                flag = false;
             }
         }
         vistaPlats.addDishToOrder(selectedItems);
+        if (flag){
+            vistaPlats.setSelectedRow(selected);
+        }
     }
 
+    /**
+     * Updates user's order upon addition
+     * @param nomPlat Name of the dish to add
+     */
     private void afegeix(String nomPlat) {
         boolean flag = false;
         for (Carta c: carta){
@@ -80,6 +104,10 @@ public class PlatsController implements ActionListener {
         vistaPlats.addDishToOrder(selectedItems);
     }
 
+    /**
+     * Specifies instance of Carta model
+     * @param carta model to instance
+     */
     public void setCurrentCarta(ArrayList<Carta> carta){
         this.carta = carta;
     }

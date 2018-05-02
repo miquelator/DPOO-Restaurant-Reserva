@@ -66,6 +66,9 @@ public class VistaPlats extends JFrame{
         setContentPane(jSplitPane);
     }
 
+    /**
+     * Creates an empty table representing starting user's order
+     */
     private void createEmptyTable() {
         DefaultTableModel model = (DefaultTableModel) comandesTable.getModel();
         model.setRowCount(0);
@@ -143,7 +146,6 @@ public class VistaPlats extends JFrame{
         model.setRowCount(0);
         model.setColumnCount(0);
 
-        //TODO: FER QUE ES MOSTRIN EL NOMS DE LES COMLUMNES, FICAR EL JTABLE DINS D'UN JSCROLL PANE I ARREGLAR LA PART ESQUERRA DE LA VISTA (CARTA)
         model.addColumn("Nom plat");
         model.addColumn("Nombre d'unitats");
         model.addColumn("Preu unitari");
@@ -177,4 +179,30 @@ public class VistaPlats extends JFrame{
         return null;
     }
 
+    public int getSelectedOrderIndex() {
+        return  comandesTable.getSelectedRow();
+    }
+
+    public void setSelectedRow(int selected) {
+        /*
+        comandesTable.changeSelection(0, 0, false, false);
+        comandesTable.setCellSelectionEnabled(false);
+        comandesTable.setColumnSelectionAllowed(false);
+        */
+
+        //comandesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        comandesTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+
+        comandesTable.setColumnSelectionAllowed(true);
+        comandesTable.setRowSelectionAllowed(false);
+
+        comandesTable.setColumnSelectionAllowed(false);
+        comandesTable.setRowSelectionAllowed(true);
+
+        System.out.println(selected);
+        comandesTable.setRowSelectionInterval(selected, selected);
+        //comandesTable.getSelectionModel().setSelectionInterval(selected - 1, selected);
+        //comandesTable.getSelectionModel().addSelectionInterval(selected - 1, selected);
+    }
 }
