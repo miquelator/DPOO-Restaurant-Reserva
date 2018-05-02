@@ -46,7 +46,7 @@ public class PrincipalController implements ActionListener {
             case VistaPrincipal.MENU:
                 ArrayList<Carta> carta = comunicacio.veureCarta(1);
                 VistaPlats vistaPlats = new VistaPlats();
-                PlatsController platsController = new PlatsController(vistaPlats);
+                PlatsController platsController = new PlatsController(vistaPlats, comunicacio);
                 platsController.setCurrentCarta(carta);
                 PlatsChangeController platsChangeController = new PlatsChangeController(vistaPlats, comunicacio, platsController);
                 vistaPlats.setController(platsController, platsChangeController);

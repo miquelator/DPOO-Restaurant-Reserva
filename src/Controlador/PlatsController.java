@@ -2,6 +2,7 @@ package Controlador;
 
 import Model.Carta;
 import Model.CartaSelection;
+import Network.ComunicationServer;
 import Vista.VistaPlats;
 
 import java.awt.event.ActionEvent;
@@ -12,10 +13,12 @@ public class PlatsController implements ActionListener {
     private VistaPlats vistaPlats;
     private ArrayList<Carta> carta;
     private ArrayList<CartaSelection> selectedItems;
+    private ComunicationServer comunicationServer;
 
-    public PlatsController(VistaPlats vistaPlats) {
+    public PlatsController(VistaPlats vistaPlats, ComunicationServer c) {
         this.vistaPlats = vistaPlats;
         selectedItems = new ArrayList<>();
+        comunicationServer = c;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class PlatsController implements ActionListener {
                 break;
 
             case VistaPlats.DO_ORDER:
-                System.out.println("fes comanda");
+                comunicationServer.enviaComanda(selectedItems);
                 break;
 
             case VistaPlats.ADD:

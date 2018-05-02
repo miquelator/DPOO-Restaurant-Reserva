@@ -1,6 +1,8 @@
 package Model;
 
-public class CartaSelection {
+import java.io.Serializable;
+
+public class CartaSelection implements Serializable{
     private String nomPlat;
     private float preu;
     private int unitatsDemanades;

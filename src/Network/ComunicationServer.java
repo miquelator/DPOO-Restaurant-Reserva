@@ -1,6 +1,7 @@
 package Network;
 
 import Model.Carta;
+import Model.CartaSelection;
 import Model.ConfigJson;
 
 import java.io.*;
@@ -57,6 +58,15 @@ public class ComunicationServer extends Thread{
         return false;
     }
 
+    public void enviaComanda (ArrayList<CartaSelection> cartaSelection){
+        try{
+            outToServer.writeUTF("SHOW_MENU");
+            ooStream.writeObject(cartaSelection);
+        }catch (IOException e){
+
+        }
+
+    }
 
     public ArrayList<Carta> veureCarta(int seleccio){
         try {
