@@ -7,8 +7,6 @@ import Vista.VistaPlats;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.ListIterator;
 
 public class PlatsController implements ActionListener {
     private VistaPlats vistaPlats;

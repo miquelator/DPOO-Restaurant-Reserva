@@ -46,9 +46,10 @@ public class VistaPlats extends JFrame{
         comandesTable = new JTable(new JTableModel());
         comandesTable.getTableHeader().setReorderingAllowed(false);
         createEmptyTable();
+        JScrollPane scrollPane = new JScrollPane(comandesTable);
         delete = new JButton(DELETE);
         doOrder = new JButton(DO_ORDER);
-        east.add(comandesTable, BorderLayout.CENTER);
+        east.add(scrollPane, BorderLayout.CENTER);
         JPanel southEast = new JPanel(new GridLayout(1,2));
         JPanel deleteAux = new JPanel();
         JPanel doOrderAux = new JPanel();
@@ -137,6 +138,7 @@ public class VistaPlats extends JFrame{
 
 
     public void addDishToOrder(ArrayList<CartaSelection> selectedItems) {
+
         DefaultTableModel model = (DefaultTableModel) comandesTable.getModel();
         model.setRowCount(0);
         model.setColumnCount(0);
