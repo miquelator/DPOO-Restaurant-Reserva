@@ -101,15 +101,16 @@ public class ComunicationServer extends Thread{
 
 
 
-    public   void pagar (){
+    public double pagar (){
 
         try {
             outToServer.writeUTF("PAY");
-
+            double totalPagar = inToServer.readDouble();
+            return totalPagar;
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }
-
+        return -1;
     }
 
 }

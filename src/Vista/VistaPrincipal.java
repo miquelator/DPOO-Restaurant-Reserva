@@ -102,4 +102,11 @@ public class VistaPrincipal extends JFrame{
         pay_exit.setEnabled(b);
         order_status.setEnabled(b);
     }
+
+    public void mostraPreuTotal(double totalPagar) {
+        String[] options = { "Pagar i marxar" };
+        JOptionPane.showOptionDialog(this, "Total a pagar: " + totalPagar,
+                "Factura", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, options, options[0]);
+    }
 }

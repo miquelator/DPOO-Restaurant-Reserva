@@ -51,7 +51,7 @@ public class PrincipalController implements ActionListener {
                 PlatsChangeController platsChangeController = new PlatsChangeController(vistaPlats, comunicacio, platsController);
                 vistaPlats.setController(platsController, platsChangeController);
                 vistaPlats.drawInfo(carta, 0);
-                vistaPrincipal.setVisible(false);
+                //vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);
 
                 break;
@@ -61,7 +61,12 @@ public class PrincipalController implements ActionListener {
                 break;
 
             case VistaPrincipal.PAY_EXIT:
-                comunicacio.pagar();
+                double totalPagar = comunicacio.pagar();
+                if (totalPagar == -1){
+                    vistaPrincipal.mostraErrorServidor("Error a l'hora de calcular el preu total a pagar!", "ERROR");
+                }else {
+                    vistaPrincipal.mostraPreuTotal(totalPagar);
+                }
                 break;
             case VistaPrincipal.EXIT:
                 System.exit(1);
