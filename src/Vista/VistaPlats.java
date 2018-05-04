@@ -69,7 +69,7 @@ public class VistaPlats extends JFrame{
     /**
      * Creates an empty table representing starting user's order
      */
-    private void createEmptyTable() {
+    public void createEmptyTable() {
         DefaultTableModel model = (DefaultTableModel) comandesTable.getModel();
         model.setRowCount(0);
         model.setColumnCount(0);
@@ -139,7 +139,10 @@ public class VistaPlats extends JFrame{
         carta.addChangeListener(platsChangeController);
     }
 
-
+    /**
+     * Updates view's table with selected dish by user
+     * @param selectedItems ArrayList of user's dish selection
+     */
     public void addDishToOrder(ArrayList<CartaSelection> selectedItems) {
 
         DefaultTableModel model = (DefaultTableModel) comandesTable.getModel();
@@ -183,26 +186,22 @@ public class VistaPlats extends JFrame{
         return  comandesTable.getSelectedRow();
     }
 
+    /**
+     * Sets the specified row to selected status
+     * @param selected Row to be marked as selected
+     */
     public void setSelectedRow(int selected) {
-        /*
-        comandesTable.changeSelection(0, 0, false, false);
-        comandesTable.setCellSelectionEnabled(false);
-        comandesTable.setColumnSelectionAllowed(false);
-        */
-
-        //comandesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
         comandesTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-
-        comandesTable.setColumnSelectionAllowed(true);
-        comandesTable.setRowSelectionAllowed(false);
-
         comandesTable.setColumnSelectionAllowed(false);
         comandesTable.setRowSelectionAllowed(true);
-
-        System.out.println(selected);
         comandesTable.setRowSelectionInterval(selected, selected);
-        //comandesTable.getSelectionModel().setSelectionInterval(selected - 1, selected);
-        //comandesTable.getSelectionModel().addSelectionInterval(selected - 1, selected);
     }
+
+    public void informOrderDone() {
+        String[] options = { "Ok" };
+        JOptionPane.showOptionDialog(this, "Comanda realitzada!",
+                "Notice", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, options, options[0]);
+    }
+
 }

@@ -16,7 +16,7 @@ public class PlatsController implements ActionListener {
     private ComunicationServer comunicationServer;
 
     /**
-     * Contructor for current class
+     * Constructor for current class
      * @param vistaPlats View linked to this controller class
      * @param c communication instance for server information exchange
      */
@@ -43,6 +43,8 @@ public class PlatsController implements ActionListener {
 
             case VistaPlats.DO_ORDER:
                 comunicationServer.enviaComanda(selectedItems);
+                vistaPlats.informOrderDone();
+                vistaPlats.createEmptyTable();
                 break;
 
             case VistaPlats.ADD:
