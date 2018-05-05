@@ -58,14 +58,30 @@ public class ComunicationServer extends Thread{
         return false;
     }
 
-    public void enviaComanda (ArrayList<CartaSelection> cartaSelection){
+    public void desconecta(){
         try{
-            outToServer.writeUTF("ORDER");
-            ooStream.writeObject(cartaSelection);
+            outToServer.writeUTF("DISCONNECT");
+
         }catch (IOException e){
 
         }
 
+    }
+
+    public boolean enviaComanda (ArrayList<CartaSelection> cartaSelection){
+        try{
+            outToServer.writeUTF("ORDER");
+            ooStream.writeObject(cartaSelection);
+
+            Boolean b = inToServer.readBoolean();
+            if(b){
+                return true;
+            }else{
+                return false;            }
+        }catch (IOException e){
+
+        }
+        return false;
     }
 
     public ArrayList<Carta> veureCarta(int seleccio){

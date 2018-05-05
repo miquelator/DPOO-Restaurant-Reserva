@@ -69,6 +69,7 @@ public class PrincipalController implements ActionListener {
                 }
                 break;
             case VistaPrincipal.EXIT:
+                comunicacio.desconecta();
                 System.exit(1);
                 break;
         }

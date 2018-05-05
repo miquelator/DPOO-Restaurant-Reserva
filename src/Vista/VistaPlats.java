@@ -110,14 +110,19 @@ public class VistaPlats extends JFrame{
         JPanel menuRow = new JPanel();
         JLabel itemName = new JLabel(carta.getNomPlat());
         JPanel rightSideMenuRow = new JPanel(new GridLayout(1,2));
+        JPanel quantitatMenuRow = new JPanel(new BorderLayout());
         JButton addButton = new JButton(ADD);
         addButton.setActionCommand(ADD + "#" + carta.getNomPlat());
         JLabel price = new JLabel(String.valueOf(carta.getPreu()) + " €");
-
+        JLabel quantitat = new JLabel(String.valueOf("Disponibles: "+carta.getQuantitat()));
         rightSideMenuRow.add(price);
+        quantitatMenuRow.add(quantitat, BorderLayout.CENTER);
+
         rightSideMenuRow.add(addButton);
         menuRow.add(itemName);
         menuRow.add(rightSideMenuRow);
+        menuRow.add(quantitatMenuRow);
+
         arrayButtons.add(addButton);
         return menuRow;
     }
@@ -195,6 +200,13 @@ public class VistaPlats extends JFrame{
         comandesTable.setColumnSelectionAllowed(false);
         comandesTable.setRowSelectionAllowed(true);
         comandesTable.setRowSelectionInterval(selected, selected);
+    }
+
+    public void showError(String message, String titol){
+        JOptionPane.showMessageDialog(null,
+                message,
+                titol,
+                JOptionPane.ERROR_MESSAGE);
     }
 
     public void informOrderDone() {
