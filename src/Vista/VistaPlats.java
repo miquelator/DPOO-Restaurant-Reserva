@@ -154,7 +154,7 @@ public class VistaPlats extends JFrame{
         model.setRowCount(0);
         model.setColumnCount(0);
 
-        model.addColumn("Nom plat");
+        model.addColumn("Nom del plat");
         model.addColumn("Nombre d'unitats");
         model.addColumn("Preu unitari");
         model.addColumn("Preu total");
