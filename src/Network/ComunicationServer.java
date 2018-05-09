@@ -2,6 +2,7 @@ package Network;
 
 import Model.Carta;
 import Model.CartaSelection;
+import Model.CartaStatus;
 import Model.ConfigJson;
 
 import java.io.*;
@@ -104,15 +105,18 @@ public class ComunicationServer extends Thread{
     }
 
 
-    public   void veureEstat (){
+    public   ArrayList<CartaStatus> veureEstat (){
 
         try {
             outToServer.writeUTF("SHOW_STATUS");
 
-        }catch (IOException | NullPointerException e){
+           return(ArrayList<CartaStatus>) oiStream.readObject();
+
+        }catch (IOException | NullPointerException |ClassNotFoundException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
         }
 
+        return null;
     }
 
     public void setController (Controlador.PrincipalController c){

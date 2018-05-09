@@ -4,6 +4,7 @@ import Model.Carta;
 import Model.GestioDades;
 import Network.ComunicationServer;
 import Vista.LoginView;
+import Vista.StatusView;
 import Vista.VistaPlats;
 import Vista.VistaPrincipal;
 
@@ -57,7 +58,9 @@ public class PrincipalController implements ActionListener {
                 break;
 
             case VistaPrincipal.ORDER_STATUS:
-                comunicacio.veureEstat();
+                StatusView statusView = new StatusView(comunicacio.veureEstat());
+                statusView.setVisible(true);
+
                 break;
 
             case VistaPrincipal.PAY_EXIT:
