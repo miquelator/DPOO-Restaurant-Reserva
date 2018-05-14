@@ -53,6 +53,7 @@ public class VistaPrincipal extends JFrame{
         pay_exit = new JButton(PAY_EXIT);
         exit = new JButton(EXIT);
 
+
         menu.setEnabled(false);
         pay_exit.setEnabled(false);
         order_status.setEnabled(false);

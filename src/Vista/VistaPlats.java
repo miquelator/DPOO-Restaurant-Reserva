@@ -92,13 +92,53 @@ public class VistaPlats extends JFrame{
     }
 
 
+    /***
+     * This method fills the tabs with the avilable dishes on the menu
+     * @param cartes ArrayList of Cartes with the avilable items on the meny
+     * @param tab the tab for the type of dish
+     */
     public void drawInfo(ArrayList<Carta> cartes, int tab) {
+
         try{
-            JPanel left = new JPanel(new GridLayout(cartes.size(),1));
+
+            // create a gridbag layout
+            JPanel left = new JPanel(new GridBagLayout());
+
+            //set the default constraints
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridy = 0;
+            c.insets = new Insets(10,5,10,5);
+            c.anchor = GridBagConstraints.WEST;
+
+            //create a array list of buttons
             arrayButtons = new ArrayList<>();
+
+            // for every item fill a row of info
             for (Carta carta :cartes){
-                left.add(createMenuRow(carta));
+
+                // create the specific names and items
+                JLabel itemName = new JLabel(carta.getNomPlat());
+                JButton addButton = new JButton(ADD);
+                addButton.setActionCommand(ADD + "#" + carta.getNomPlat());
+                JLabel price = new JLabel(String.valueOf(carta.getPreu()) + " €");
+                JLabel quantitat = new JLabel(String.valueOf("Disponibles: "+carta.getQuantitat()));
+
+                // add into the layout
+                c.gridx = 0;
+                left.add(itemName,c);
+                c.gridx = 1;
+                left.add(price, c);
+                c.gridx = 2;
+                left.add(addButton,c);
+                c.gridx = 3;
+                left.add(quantitat, c);
+                arrayButtons.add(addButton);
+
+                // increment in one the y value of the grid
+                c.gridy += 1;
             }
+
+            // fill the data into the view
             carta.setComponentAt(tab, left);
             setContentPane(jSplitPane);
             updateControllers();
@@ -106,26 +146,6 @@ public class VistaPlats extends JFrame{
         }
     }
 
-    private JPanel createMenuRow(Carta carta) {
-        JPanel menuRow = new JPanel();
-        JLabel itemName = new JLabel(carta.getNomPlat());
-        JPanel rightSideMenuRow = new JPanel(new GridLayout(1,2));
-        JPanel quantitatMenuRow = new JPanel(new BorderLayout());
-        JButton addButton = new JButton(ADD);
-        addButton.setActionCommand(ADD + "#" + carta.getNomPlat());
-        JLabel price = new JLabel(String.valueOf(carta.getPreu()) + " €");
-        JLabel quantitat = new JLabel(String.valueOf("Disponibles: "+carta.getQuantitat()));
-        rightSideMenuRow.add(price);
-        quantitatMenuRow.add(quantitat, BorderLayout.CENTER);
-
-        rightSideMenuRow.add(addButton);
-        menuRow.add(itemName);
-        menuRow.add(rightSideMenuRow);
-        menuRow.add(quantitatMenuRow);
-
-        arrayButtons.add(addButton);
-        return menuRow;
-    }
 
     public int getSelectedTab() {
         return carta.getSelectedIndex();
