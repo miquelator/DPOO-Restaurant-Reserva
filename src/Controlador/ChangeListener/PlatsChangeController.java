@@ -1,5 +1,6 @@
-package Controlador;
+package Controlador.ChangeListener;
 
+import Controlador.ActionListener.PlatsController;
 import Network.ComunicationServer;
 import Vista.VistaPlats;
 

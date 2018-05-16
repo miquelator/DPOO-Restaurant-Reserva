@@ -1,6 +1,6 @@
 package Vista;
 
-import Controlador.LoginController;
+import Controlador.ActionListener.LoginController;
 
 import javax.swing.*;
 import java.awt.*;

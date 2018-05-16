@@ -1,5 +1,8 @@
-package Controlador;
+package Controlador.ActionListener;
 
+import Controlador.ChangeListener.PlatsChangeController;
+import Controlador.WindowAdapter.CartaWindowClosing;
+import Controlador.WindowAdapter.StatusWindowClosing;
 import Model.Carta;
 import Model.GestioDades;
 import Network.ComunicationServer;
@@ -47,20 +50,25 @@ public class PrincipalController implements ActionListener {
             case VistaPrincipal.MENU:
                 ArrayList<Carta> carta = comunicacio.veureCarta(1);
                 VistaPlats vistaPlats = new VistaPlats();
+
+                CartaWindowClosing cartaWindowClosing = new CartaWindowClosing(vistaPrincipal, vistaPlats);
                 PlatsController platsController = new PlatsController(vistaPlats, comunicacio);
                 platsController.setCurrentCarta(carta);
                 PlatsChangeController platsChangeController = new PlatsChangeController(vistaPlats, comunicacio, platsController);
-                vistaPlats.setController(platsController, platsChangeController);
+
+                vistaPlats.setController(platsController, platsChangeController, cartaWindowClosing);
                 vistaPlats.drawInfo(carta, 0);
-                //vistaPrincipal.setVisible(false);
+                vistaPrincipal.setVisible(false);
                 vistaPlats.setVisible(true);
 
                 break;
 
             case VistaPrincipal.ORDER_STATUS:
                 StatusView statusView = new StatusView(comunicacio.veureEstat());
+                StatusWindowClosing statusWindowClosing = new StatusWindowClosing(statusView, vistaPrincipal);
+                statusView.setController(statusWindowClosing);
+                vistaPrincipal.setVisible(false);
                 statusView.setVisible(true);
-
                 break;
 
             case VistaPrincipal.PAY_EXIT:

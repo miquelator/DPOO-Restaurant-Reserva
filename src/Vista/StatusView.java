@@ -1,5 +1,6 @@
 package Vista;
 
+import Controlador.WindowAdapter.StatusWindowClosing;
 import Model.CartaSelection;
 import Model.CartaStatus;
 
@@ -66,4 +67,7 @@ public class StatusView extends JFrame{
 
     }
 
+    public void setController(StatusWindowClosing statusWindowClosing) {
+        this.addWindowListener(statusWindowClosing);
+    }
 }

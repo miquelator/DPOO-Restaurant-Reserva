@@ -1,3 +1,4 @@
+import Controlador.ActionListener.PrincipalController;
 import Model.ConfigJson;
 import Model.GestioDades;
 import Network.ComunicationServer;
@@ -27,7 +28,7 @@ public class Main {
         comunicacioServer.start();
 
 
-        Controlador.PrincipalController controller = new Controlador.PrincipalController(gestioDades,vistaPrincipal, comunicacioServer);
+        PrincipalController controller = new PrincipalController(gestioDades,vistaPrincipal, comunicacioServer);
 
         vistaPrincipal.setVisible(true);
 

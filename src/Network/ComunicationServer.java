@@ -1,12 +1,12 @@
 package Network;
 
+import Controlador.ActionListener.PrincipalController;
 import Model.Carta;
 import Model.CartaSelection;
 import Model.CartaStatus;
 import Model.ConfigJson;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ComunicationServer extends Thread{
 
 
-    private Controlador.PrincipalController controller;
+    private PrincipalController controller;
     private Socket socketServer;
     private DataOutputStream outToServer;
     private DataInputStream inToServer;
@@ -119,7 +119,7 @@ public class ComunicationServer extends Thread{
         return null;
     }
 
-    public void setController (Controlador.PrincipalController c){
+    public void setController (PrincipalController c){
         controller = c;
     }
 

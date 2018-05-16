@@ -2,8 +2,9 @@ package Vista;
 
 
 
-import Controlador.PlatsChangeController;
-import Controlador.PlatsController;
+import Controlador.ChangeListener.PlatsChangeController;
+import Controlador.ActionListener.PlatsController;
+import Controlador.WindowAdapter.CartaWindowClosing;
 import Model.Carta;
 import Model.CartaSelection;
 import Model.JTableModel;
@@ -157,11 +158,12 @@ public class VistaPlats extends JFrame{
         }
     }
 
-    public void setController(PlatsController controller, PlatsChangeController platsChangeController){
+    public void setController(PlatsController controller, PlatsChangeController platsChangeController, CartaWindowClosing cartaWindowClosing){
         this.controller = controller;
         delete.addActionListener(controller);
         doOrder.addActionListener(controller);
         carta.addChangeListener(platsChangeController);
+        this.addWindowListener(cartaWindowClosing);
     }
 
     /**

@@ -1,6 +1,5 @@
-package Controlador;
+package Controlador.ActionListener;
 
-import Network.ComunicationServer;
 import Vista.LoginView;
 
 import java.awt.event.ActionEvent;

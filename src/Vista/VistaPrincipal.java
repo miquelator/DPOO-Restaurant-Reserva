@@ -1,7 +1,7 @@
 package Vista;
 
 
-import Controlador.PrincipalController;
+import Controlador.ActionListener.PrincipalController;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
