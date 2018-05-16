@@ -63,6 +63,7 @@ public class VistaPlats extends JFrame{
         carta = new JTabbedPane();
 
         jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, createTabbedPane(), east);
+
         jSplitPane.setDividerLocation(500);
         setContentPane(jSplitPane);
     }
@@ -104,7 +105,6 @@ public class VistaPlats extends JFrame{
 
             // create a gridbag layout
             JPanel left = new JPanel(new GridBagLayout());
-
             //set the default constraints
             GridBagConstraints c = new GridBagConstraints();
             c.gridy = 0;
