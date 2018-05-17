@@ -6,6 +6,7 @@ import Model.CartaStatus;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class StatusView extends JFrame{
@@ -13,9 +14,11 @@ public class StatusView extends JFrame{
     private JScrollPane panel;
     private JPanel panelInterior;
     private JPanel panelSuperior;
+    private JButton jbRefresh;
+    public static final String REFRESH = "Refresh";
 
 
-    public StatusView (ArrayList<CartaStatus> comanda){
+    public StatusView (){
 
         panelSuperior = new JPanel(new GridLayout(1,2));
 
@@ -29,8 +32,38 @@ public class StatusView extends JFrame{
         panelSuperior.add(aux1);
         panelSuperior.add(aux2);
 
-        panelInterior = new JPanel(new GridLayout(comanda.size(),1));
+        // create a empty panel
+        panelInterior = new JPanel();
+        panel = new JScrollPane(panelInterior);
 
+
+
+        jbRefresh = new JButton(REFRESH);
+        JPanel pRefresh = new JPanel(new GridBagLayout());
+        pRefresh.add(jbRefresh);
+
+        getContentPane().add(panelSuperior,BorderLayout.NORTH);
+        getContentPane().add(pRefresh,BorderLayout.SOUTH);
+        getContentPane().add(panel,BorderLayout.CENTER);
+
+        setSize(250,500);
+        setTitle("Status");
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+
+    }
+
+    public void setController(StatusWindowClosing statusWindowClosing) {
+        this.addWindowListener(statusWindowClosing);
+    }
+
+    public void fillComandes (ArrayList<CartaStatus> comanda){
+
+       // panel = new JScrollPane();
+
+        panelInterior.removeAll();
+        panelInterior.setLayout(new GridLayout(comanda.size(),1));
 
         for (CartaStatus cartaStatus : comanda){
             JPanel casella = new JPanel(new GridLayout(1,2));
@@ -52,22 +85,15 @@ public class StatusView extends JFrame{
             panelInterior.add(casella);
         }
 
-        panel = new JScrollPane(panelInterior);
 
-        setSize(250,500);
-        setTitle("Status");
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-        setLocationRelativeTo(null);
-
-        getContentPane().add(panelSuperior,BorderLayout.NORTH);
-        getContentPane().add(panel,BorderLayout.CENTER);
-
-
+        panelInterior.updateUI();
 
 
     }
 
-    public void setController(StatusWindowClosing statusWindowClosing) {
-        this.addWindowListener(statusWindowClosing);
+    public void registerController(ActionListener al){
+        jbRefresh.addActionListener(al);
+        jbRefresh.setActionCommand(REFRESH);
     }
+
 }

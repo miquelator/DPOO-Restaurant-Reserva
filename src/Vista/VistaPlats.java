@@ -103,6 +103,7 @@ public class VistaPlats extends JFrame{
 
         try{
 
+
             // create a gridbag layout
             JPanel left = new JPanel(new GridBagLayout());
             //set the default constraints
@@ -143,6 +144,7 @@ public class VistaPlats extends JFrame{
             carta.setComponentAt(tab, left);
             setContentPane(jSplitPane);
             updateControllers();
+
         }catch (NullPointerException ignored){
         }
     }

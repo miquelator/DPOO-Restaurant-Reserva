@@ -64,7 +64,10 @@ public class PrincipalController implements ActionListener {
                 break;
 
             case VistaPrincipal.ORDER_STATUS:
-                StatusView statusView = new StatusView(comunicacio.veureEstat());
+                StatusView statusView = new StatusView();
+                statusView.fillComandes(comunicacio.veureEstat());
+                StatusController statusController = new StatusController(statusView, comunicacio);
+                statusView.registerController(statusController);
                 StatusWindowClosing statusWindowClosing = new StatusWindowClosing(statusView, vistaPrincipal);
                 statusView.setController(statusWindowClosing);
                 vistaPrincipal.setVisible(false);
