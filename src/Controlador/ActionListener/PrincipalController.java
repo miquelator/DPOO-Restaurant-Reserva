@@ -80,12 +80,11 @@ public class PrincipalController implements ActionListener {
                     vistaPrincipal.mostraErrorServidor("Error a l'hora de calcular el preu total a pagar!", "ERROR");
                 }else {
                     vistaPrincipal.mostraPreuTotal(totalPagar);
+                    comunicacio.desconecta();
+                    System.exit(1);
                 }
                 break;
-            case VistaPrincipal.EXIT:
-                comunicacio.desconecta();
-                System.exit(1);
-                break;
+
         }
 
     }

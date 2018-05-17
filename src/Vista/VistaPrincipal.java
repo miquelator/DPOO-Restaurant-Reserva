@@ -13,13 +13,11 @@ public class VistaPrincipal extends JFrame{
     private JButton menu;
     private JButton order_status;
     private JButton pay_exit;
-    private JButton exit;
 
     public final static String AUTHENTICATE = "Autenticar-se";
     public final static String MENU = "Carta / Realitzar comanda";
     public final static String ORDER_STATUS = "Estat de la comanda";
     public final static String PAY_EXIT = "Pagar i marxar";
-    public final static String EXIT = "Sortir";
 
     public VistaPrincipal(){
         populateView();
@@ -51,7 +49,6 @@ public class VistaPrincipal extends JFrame{
         menu.setEnabled(false);
         order_status = new JButton(ORDER_STATUS);
         pay_exit = new JButton(PAY_EXIT);
-        exit = new JButton(EXIT);
 
 
         menu.setEnabled(false);
@@ -63,14 +60,12 @@ public class VistaPrincipal extends JFrame{
         menu.setFont(new Font("Arial", Font.PLAIN, 30));
         order_status.setFont(new Font("Arial", Font.PLAIN, 30));
         pay_exit.setFont(new Font("Arial", Font.PLAIN, 30));
-        exit.setFont(new Font("Arial", Font.PLAIN, 30));
 
         principal.add(title);
         principal.add(authenticate);
         principal.add(menu);
         principal.add(order_status);
         principal.add(pay_exit);
-        principal.add(exit);
 
         this.add(principal);
         this.pack();
@@ -93,7 +88,6 @@ public class VistaPrincipal extends JFrame{
         order_status.addActionListener(c);
         menu.addActionListener(c);
         pay_exit.addActionListener(c);
-        exit.addActionListener(c);
     }
 
     public void setEnabledBotons (boolean b){
