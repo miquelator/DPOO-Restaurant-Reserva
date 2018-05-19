@@ -49,9 +49,7 @@ public class ComunicationServer extends Thread{
             outToServer.writeUTF(userName);
             outToServer.writeUTF(password);
 
-            boolean b = inToServer.readBoolean();
-
-            return  b;
+            return inToServer.readBoolean();
 
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");

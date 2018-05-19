@@ -100,9 +100,7 @@ public class VistaPlats extends JFrame{
      * @param tab the tab for the type of dish
      */
     public void drawInfo(ArrayList<Carta> cartes, int tab) {
-
         try{
-
 
             // create a gridbag layout
             JPanel left = new JPanel(new GridBagLayout());
@@ -141,7 +139,8 @@ public class VistaPlats extends JFrame{
             }
 
             // fill the data into the view
-            carta.setComponentAt(tab, left);
+            JScrollPane leftScroll = new JScrollPane(left);
+            carta.setComponentAt(tab, leftScroll);
             setContentPane(jSplitPane);
             updateControllers();
 
