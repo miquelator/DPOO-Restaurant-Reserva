@@ -5,7 +5,7 @@ public class ConfigJson {
     private String ip;
 
 
-    //Getters i Setters
+    //Getters and Setters
 
     public int getPort_server() {
         return port_server;

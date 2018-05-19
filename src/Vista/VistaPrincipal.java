@@ -84,11 +84,21 @@ public class VistaPrincipal extends JFrame{
                 null, options, options[0]);
     }
 
+
+
+    /***
+     * Sets the window controller that determines whether the window closes
+     * @param reservaWindowClosing Controller
+     */
     public void setWindowClosing(ReservaWindowClosing reservaWindowClosing){
         this.addWindowListener(reservaWindowClosing);
 
     }
 
+    /***
+     * Sets actions listener to buttons
+     * @param c Controller
+     */
     public void linkejaController (PrincipalController c){
         authenticate.addActionListener(c);
         order_status.addActionListener(c);
@@ -96,6 +106,10 @@ public class VistaPrincipal extends JFrame{
         pay_exit.addActionListener(c);
     }
 
+    /***
+     * Depending on whether the user has authenticated, this method will disable some buttons and enable others
+     * @param b boolean depending the authentication
+     */
     public void setEnabledBotons (boolean b){
         authenticate.setEnabled(!b);
         menu.setEnabled(b);
@@ -103,6 +117,10 @@ public class VistaPrincipal extends JFrame{
         order_status.setEnabled(b);
     }
 
+    /***
+     * Generate message to show the price to pay when leaving
+     * @param totalPagar price
+     */
     public void mostraPreuTotal(double totalPagar) {
         String[] options = { "Pagar i marxar" };
         JOptionPane.showOptionDialog(this, "Total a pagar: " + totalPagar,

@@ -19,6 +19,10 @@ public class ReservaWindowClosing extends WindowAdapter {
         this.autenticat = autenticat;
     }
 
+    /***
+     * This method decides whether to set the view as visible or stop depending depending whether the user is authenticated or not
+     * @param e WindowEvent
+     */
     @Override
     public void windowClosing(WindowEvent e) {
 

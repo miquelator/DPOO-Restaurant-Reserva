@@ -10,9 +10,6 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
-/**
- * Created by miquelator on 19/3/18.
- */
 public class ComunicationServer extends Thread{
 
 
@@ -43,6 +40,14 @@ public class ComunicationServer extends Thread{
         }
     }
 
+
+    /***
+     * Send the request to the server to check if a user has valid credentials to login
+     * @param userName Name of the user
+     * @param password User's password
+     * @return Boolean with the answer of the server of whether the operation was successful
+
+     */
     public boolean autenticar(String userName, String password){
         try {
             outToServer.writeUTF("AUTHENTICATE");
@@ -67,6 +72,13 @@ public class ComunicationServer extends Thread{
 
     }
 
+
+    /***
+     * Send the request to send and order to the server
+     * @param cartaSelection List of the products selected
+     * @return Boolean with the answer of the server of whether the operation was successful
+
+     */
     public boolean enviaComanda (ArrayList<CartaSelection> cartaSelection){
         try{
             outToServer.writeUTF("ORDER");
@@ -78,6 +90,12 @@ public class ComunicationServer extends Thread{
         return false;
     }
 
+
+    /***
+     * Send the request to the server to retrieve the list of availible dishes
+     * @param seleccio Integer that determines the type of dish that we want to check
+     * @return List of products
+     */
     public ArrayList<Carta> veureCarta(int seleccio){
         try {
             outToServer.writeUTF("SHOW_MENU");
@@ -95,6 +113,12 @@ public class ComunicationServer extends Thread{
     }
 
 
+
+    /***
+     * Send the request to the server to retrieve the list of orders it has
+     * @return List of orders
+
+     */
     public   ArrayList<CartaStatus> veureEstat (){
 
         try {
@@ -115,6 +139,11 @@ public class ComunicationServer extends Thread{
 
 
 
+    /***
+     * Notifies the server that the order is willing to pay and leave, requesting the amount he has to pay
+     * @return amount to pay
+
+     */
     public double pagar (){
 
         try {

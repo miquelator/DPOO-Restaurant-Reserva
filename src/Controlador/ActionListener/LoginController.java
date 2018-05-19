@@ -9,11 +9,23 @@ public class LoginController implements ActionListener {
     private PrincipalController parent;
     private LoginView loginView;
 
+
+    /***
+     * Constructor of the class
+     * @param parent Reference to the origin window
+     * @param loginView Reference to login window
+     * @return The constructor returns the class it creates
+
+     */
+
     public LoginController(PrincipalController parent, LoginView loginView) {
         this.parent = parent;
         this.loginView = loginView;
     }
-
+    /***
+     * Method that manages actions performed by the view it's listening
+     * @param e Event that is triggered
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){

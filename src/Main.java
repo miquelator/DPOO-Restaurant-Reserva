@@ -1,6 +1,5 @@
 import Controlador.ActionListener.PrincipalController;
 import Model.ConfigJson;
-import Model.GestioDades;
 import Network.ComunicationServer;
 import Vista.VistaPrincipal;
 import com.google.gson.Gson;
@@ -19,19 +18,13 @@ public class Main {
             File configFile = new File("resources/config.json");
             configJson = new Gson().fromJson(new FileReader(configFile), ConfigJson.class);
 
+            VistaPrincipal vistaPrincipal = new VistaPrincipal();
 
-            GestioDades gestioDades = new GestioDades();
+            ComunicationServer comunicacioServer = new ComunicationServer(configJson);
+            comunicacioServer.start();
 
-        VistaPrincipal vistaPrincipal = new VistaPrincipal();
-
-
-        ComunicationServer comunicacioServer = new ComunicationServer(configJson);
-        comunicacioServer.start();
-
-
-        PrincipalController controller = new PrincipalController(gestioDades,vistaPrincipal, comunicacioServer);
-
-        vistaPrincipal.setVisible(true);
+            PrincipalController controller = new PrincipalController(vistaPrincipal, comunicacioServer);
+            vistaPrincipal.setVisible(true);
 
         } catch (FileNotFoundException e) {
             System.err.println("El fichero \"config.json\" no ha sido encontrado.");

@@ -70,6 +70,10 @@ public class PlatsController implements ActionListener {
         }
     }
 
+
+    /***
+     * Modifies the quantity of the products substracting the number required by the order
+     */
     private void updateAvailableUnits() {
 
         for (int i = 0; i < selectedItems.size(); i++) {

@@ -19,6 +19,11 @@ public class PlatsChangeController  implements ChangeListener {
         this.platsController = platsController;
     }
 
+
+    /***
+     * This method changes the current dish panel depending on which tab has been pressed
+     * @param e Change event
+     */
     @Override
     public void stateChanged(ChangeEvent e) {
         switch (vistaPlats.getSelectedTab()){

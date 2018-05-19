@@ -11,11 +11,22 @@ public class StatusController implements ActionListener {
     private StatusView statusView;
     private ComunicationServer comunication;
 
+
+    /***
+     * Constructor of the class
+     * @param statusView Reference to the window
+     * @param comunication Reference to the network package in order to communicate with the server
+     * @return The constructor returns the class it creates
+
+     */
     public StatusController(StatusView statusView, ComunicationServer comunication) {
         this.statusView = statusView;
         this.comunication = comunication;
     }
-
+    /***
+     * Method that manages actions performed by the view it's listening
+     * @param e Event that is triggered
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals(StatusView.REFRESH)){

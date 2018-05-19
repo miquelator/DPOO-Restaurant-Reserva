@@ -5,7 +5,6 @@ import Controlador.WindowAdapter.CartaWindowClosing;
 import Controlador.WindowAdapter.ReservaWindowClosing;
 import Controlador.WindowAdapter.StatusWindowClosing;
 import Model.Carta;
-import Model.GestioDades;
 import Network.ComunicationServer;
 import Vista.LoginView;
 import Vista.StatusView;
@@ -21,13 +20,18 @@ import java.util.ArrayList;
  */
 public class PrincipalController implements ActionListener {
 
-    private GestioDades gestioDades;
     private VistaPrincipal vistaPrincipal;
     private ComunicationServer comunicacio;
     private ReservaWindowClosing reservaWindowClosing;
 
-    public PrincipalController(GestioDades g, VistaPrincipal v, ComunicationServer c) {
-        gestioDades = g;
+    /***
+     * Constructor of the class
+     * @param v Reference to the main view that this controller controls
+     * @param c Reference to the network class in order to comunicate with the server
+     * @return The constructor returns the class it creates
+
+     */
+    public PrincipalController(VistaPrincipal v, ComunicationServer c) {
         vistaPrincipal = v;
         vistaPrincipal.linkejaController(this);
         comunicacio = c;
@@ -37,7 +41,10 @@ public class PrincipalController implements ActionListener {
         v.setWindowClosing(reservaWindowClosing);
 
     }
-
+    /***
+     * Method that manages actions performed by the view it's listening
+     * @param event Event that is triggered
+     */
     public void actionPerformed(ActionEvent event) {
 
         //Mirem quin botó ha estat apretat
@@ -93,10 +100,26 @@ public class PrincipalController implements ActionListener {
 
     }
 
+
+    /***
+     * This method allows for a personalized message to be sent in case of an error
+     * @param errorMessage Body of the message
+     * @param title Title of the message
+     */
+
     public void mostraError(String errorMessage, String title) {
         vistaPrincipal.mostraErrorServidor(errorMessage, title);
         System.exit(1);
     }
+
+
+    /***
+     * This method orders the network to check in the server if a new user has his credentials in good order and modifies the other windows accordingly
+     * @param userName Name of the user
+     * @param password Password introduced by the user
+     * @return This method returns a true or false boolean
+
+     */
 
     public boolean validateAuthentication(String userName, char[] password) {
         boolean b = comunicacio.autenticar(userName, String.valueOf(password));
@@ -106,6 +129,13 @@ public class PrincipalController implements ActionListener {
         return b;
     }
 
+
+    /***
+     * Setter for the main page's visibility
+     * @param b Boolean to determine whether to hide or show the window
+     * @return The constructor returns the class it creates
+
+     */
     public void setViewEnabled(boolean b) {
         vistaPrincipal.setVisible(b);
     }
