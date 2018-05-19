@@ -108,6 +108,7 @@ public class ComunicationServer extends Thread{
     public   ArrayList<CartaStatus> veureEstat (){
 
         try {
+            System.out.printf("entro");
             outToServer.writeUTF("SHOW_STATUS");
 
            return(ArrayList<CartaStatus>) oiStream.readObject();

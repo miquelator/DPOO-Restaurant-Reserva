@@ -27,9 +27,8 @@ public class LoginController implements ActionListener {
                             loginView.mostraInformacioServidor("Autenticació correcta.", "INFORMACIO");
                             loginView.setVisible(false);
                             parent.setViewEnabled(true);
-                            //TODO: PERMETRE VEURE LA CARTA SI LA VALIDACIO ES CORRECTA
                         }else {
-                            loginView.setLoginError("Error a l'hora de validar la informacio. Revisa que els camps siguin correctes.", "ERROR");
+                            loginView.setLoginError("Error a l'hora de validar la informacio. Revisa que els camps siguin correctes o que no estiguis ja conectat.", "ERROR");
                         }
 
                     }

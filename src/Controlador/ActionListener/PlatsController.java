@@ -42,17 +42,22 @@ public class PlatsController implements ActionListener {
                 break;
 
             case VistaPlats.DO_ORDER:
-                if(comunicationServer.enviaComanda(selectedItems)){
-                    System.out.println("True");
-                    vistaPlats.informOrderDone();
-                    vistaPlats.createEmptyTable();
-                    updateAvailableUnits();
-                    vistaPlats.drawInfo(carta, vistaPlats.getSelectedTab());
-                    selectedItems.clear();
+                if(selectedItems.size()>0){
+                    if(comunicationServer.enviaComanda(selectedItems)){
+
+                        vistaPlats.informOrderDone();
+                        vistaPlats.createEmptyTable();
+                        updateAvailableUnits();
+                        vistaPlats.drawInfo(carta, vistaPlats.getSelectedTab());
+                        selectedItems.clear();
+                    }else{
+                        System.out.println("false");
+                        vistaPlats.showError("No hi ha prou quantitat de plats disponibles per a fer la comanda","Quantitat insuficient");
+                    }
                 }else{
-                    System.out.println("false");
-                    vistaPlats.showError("No hi ha prou quantitat de plats disponibles per a fer la comanda","Quantitat insuficient");
+                    vistaPlats.showError("No hi ha plats demanats.","Comanda buida");
                 }
+
                 break;
 
             case VistaPlats.ADD:
