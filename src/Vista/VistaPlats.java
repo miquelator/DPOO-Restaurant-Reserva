@@ -28,7 +28,7 @@ public class VistaPlats extends JFrame{
     private ArrayList<JButton> arrayButtons;
 
     public final static String DELETE = "Esborra";
-    public final static String DO_ORDER = "Fes comandesTable";
+    public final static String DO_ORDER = "Envia comanda";
     public final static String ADD = "Afegeix";
 
     public VistaPlats (){

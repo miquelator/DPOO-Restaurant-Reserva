@@ -17,7 +17,6 @@ public class ReservaWindowClosing extends WindowAdapter {
 
     public void setAutenticat(boolean autenticat) {
         this.autenticat = autenticat;
-        System.out.print("Setejo autenticat a"+autenticat);
     }
 
     @Override
