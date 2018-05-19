@@ -33,7 +33,6 @@ public class LoginController implements ActionListener {
                         }else {
                             loginView.setLoginError("Error a l'hora de validar la informacio. Revisa que els camps siguin correctes així com el dia de reserva, o que no estiguis ja conectat.", "ERROR");
                         }
-
                     }
                 break;
         }
