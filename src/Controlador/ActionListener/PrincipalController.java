@@ -2,6 +2,7 @@ package Controlador.ActionListener;
 
 import Controlador.ChangeListener.PlatsChangeController;
 import Controlador.WindowAdapter.CartaWindowClosing;
+import Controlador.WindowAdapter.ReservaWindowClosing;
 import Controlador.WindowAdapter.StatusWindowClosing;
 import Model.Carta;
 import Model.GestioDades;
@@ -23,6 +24,7 @@ public class PrincipalController implements ActionListener {
     private GestioDades gestioDades;
     private VistaPrincipal vistaPrincipal;
     private ComunicationServer comunicacio;
+    private ReservaWindowClosing reservaWindowClosing;
 
     public PrincipalController(GestioDades g, VistaPrincipal v, ComunicationServer c) {
         gestioDades = g;
@@ -30,6 +32,9 @@ public class PrincipalController implements ActionListener {
         vistaPrincipal.linkejaController(this);
         comunicacio = c;
         c.setController(this);
+
+        reservaWindowClosing = new ReservaWindowClosing(v);
+        v.setWindowClosing(reservaWindowClosing);
 
     }
 
@@ -95,6 +100,7 @@ public class PrincipalController implements ActionListener {
 
     public boolean validateAuthentication(String userName, char[] password) {
         boolean b = comunicacio.autenticar(userName, String.valueOf(password));
+        reservaWindowClosing.setAutenticat(b);
         vistaPrincipal.setEnabledBotons(b);
 
         return b;

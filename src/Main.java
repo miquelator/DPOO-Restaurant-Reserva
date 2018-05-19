@@ -24,6 +24,7 @@ public class Main {
 
         VistaPrincipal vistaPrincipal = new VistaPrincipal();
 
+
         ComunicationServer comunicacioServer = new ComunicationServer(configJson);
         comunicacioServer.start();
 

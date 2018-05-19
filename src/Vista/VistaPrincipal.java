@@ -2,6 +2,7 @@ package Vista;
 
 
 import Controlador.ActionListener.PrincipalController;
+import Controlador.WindowAdapter.ReservaWindowClosing;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -28,7 +29,7 @@ public class VistaPrincipal extends JFrame{
         dimension.height = 600;
         dimension.width = 600;
         setMinimumSize(dimension);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 
     }
@@ -81,6 +82,11 @@ public class VistaPrincipal extends JFrame{
         JOptionPane.showOptionDialog(this, message,
                 title, JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE,
                 null, options, options[0]);
+    }
+
+    public void setWindowClosing(ReservaWindowClosing reservaWindowClosing){
+        this.addWindowListener(reservaWindowClosing);
+
     }
 
     public void linkejaController (PrincipalController c){
