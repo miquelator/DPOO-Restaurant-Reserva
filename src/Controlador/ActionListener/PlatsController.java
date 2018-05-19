@@ -42,16 +42,20 @@ public class PlatsController implements ActionListener {
                 break;
 
             case VistaPlats.DO_ORDER:
+
+                //We check that the selected list of products is not empty
                 if(selectedItems.size()>0){
+
+                    //We send the ArrayList with the products and we check what does the function return
                     if(comunicationServer.enviaComanda(selectedItems)){
 
+                        //We display a message validating the order, reset the order panel and update the available quantity of the products
                         vistaPlats.informOrderDone();
                         vistaPlats.createEmptyTable();
                         updateAvailableUnits();
                         vistaPlats.drawInfo(carta, vistaPlats.getSelectedTab());
                         selectedItems.clear();
                     }else{
-                        System.out.println("false");
                         vistaPlats.showError("No hi ha prou quantitat de plats disponibles per a fer la comanda","Quantitat insuficient");
                     }
                 }else{
@@ -67,6 +71,7 @@ public class PlatsController implements ActionListener {
     }
 
     private void updateAvailableUnits() {
+
         for (int i = 0; i < selectedItems.size(); i++) {
             for (int j = 0; j < carta.size(); j++) {
                  if (carta.get(j).getNomPlat().equals(selectedItems.get(i).getNomPlat())){

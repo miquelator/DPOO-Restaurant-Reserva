@@ -84,15 +84,7 @@ public class ComunicationServer extends Thread{
             outToServer.writeInt(seleccio);
 
             ArrayList<Carta> carta = (ArrayList<Carta>) oiStream.readObject();
-            /*
-            System.out.println("SHOW MENU");
-            for (int i = 0; i < carta.size(); i++){
-                System.out.println("Nom: " + carta.get(i).getNomPlat());
-                System.out.println("Preu: " + carta.get(i).getPreu());
-                System.out.println("Quantitat: " + carta.get(i).getQuantitat());
-                System.out.println("Id: " + carta.get(i).getIdPlat());
-            }
-            */
+
             return carta;
         }catch (IOException | NullPointerException e){
             controller.mostraError("Error a l'hora de conectar-se al servidor!", "Error");
@@ -106,7 +98,6 @@ public class ComunicationServer extends Thread{
     public   ArrayList<CartaStatus> veureEstat (){
 
         try {
-            System.out.printf("entro");
             outToServer.writeUTF("SHOW_STATUS");
 
            return(ArrayList<CartaStatus>) oiStream.readObject();
