@@ -8,6 +8,10 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.util.ArrayList;
 
+
+/**
+ * Controller to manage the logic behind changing types of dishes
+ */
 public class PlatsChangeController  implements ChangeListener {
     private VistaPlats vistaPlats;
     private ComunicationServer comunicacio;

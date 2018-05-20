@@ -8,6 +8,12 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+
+
+/**
+ * Window of the main menu section
+ */
+
 public class VistaPrincipal extends JFrame{
 
     private JButton authenticate;

@@ -6,6 +6,9 @@ import Vista.VistaPrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Class to control what to do when the order status window closes
+ */
 public class StatusWindowClosing extends WindowAdapter {
     private VistaPrincipal parent;
     private StatusView statusView;

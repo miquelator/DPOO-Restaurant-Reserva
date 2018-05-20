@@ -2,7 +2,12 @@ package Model;
 
 import java.io.Serializable;
 
+/**
+ * Main class to store data about the dishes
+ */
+
 public class Carta implements Serializable{
+
     private int idPlat;
     private String nomPlat;
     private String tipus;
@@ -87,6 +92,8 @@ public class Carta implements Serializable{
     public void setTotals(int totals) {
         this.totals = totals;
     }
+
+
 
     @Override
     public String toString() {

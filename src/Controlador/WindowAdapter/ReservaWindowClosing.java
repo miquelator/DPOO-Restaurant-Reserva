@@ -6,6 +6,10 @@ import Vista.VistaPrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Class to control what to do when the main Reserva window closes
+ */
+
 public class ReservaWindowClosing extends WindowAdapter {
     private boolean autenticat;
     private VistaPrincipal vistaPrincipal;

@@ -5,6 +5,9 @@ import Controlador.ActionListener.LoginController;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Window of the login section
+ */
 public class LoginView extends JFrame {
 
     public final static String LOG_IN = "Entrar";

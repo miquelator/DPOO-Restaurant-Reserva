@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Controller of the order window
+ */
 public class PlatsController implements ActionListener {
     private VistaPlats vistaPlats;
     private ArrayList<Carta> carta;

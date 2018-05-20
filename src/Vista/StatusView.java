@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Window of the order status section
+ */
 public class StatusView extends JFrame{
 
     private JPanel north;

@@ -16,7 +16,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 
-public class VistaPlats extends JFrame{
+
+public class
+/**
+ * Window of the order section
+ */
+VistaPlats extends JFrame{
     private PlatsController controller;
 
     private JButton delete;

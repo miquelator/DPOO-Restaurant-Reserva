@@ -3,7 +3,9 @@ package Model;
 import java.io.Serializable;
 
 
-//CartaSelection is the class used to send all information necessary when add an order
+/**
+ * Class used to send all information necessary when add an order
+ */
 public class CartaSelection implements Serializable{
     private String nomPlat;
     private float preu;

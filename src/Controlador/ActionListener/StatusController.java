@@ -6,6 +6,10 @@ import Vista.StatusView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Class to control the status order window
+ */
+
 public class StatusController implements ActionListener {
 
     private StatusView statusView;
@@ -16,7 +20,6 @@ public class StatusController implements ActionListener {
      * Constructor of the class
      * @param statusView Reference to the window
      * @param comunication Reference to the network package in order to communicate with the server
-     * @return The constructor returns the class it creates
 
      */
     public StatusController(StatusView statusView, ComunicationServer comunication) {

@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Created by miquelator on 16/3/18.
+ * Class that controlls the main view and the appereance of the secondary ones
  */
 public class PrincipalController implements ActionListener {
 
@@ -28,7 +28,6 @@ public class PrincipalController implements ActionListener {
      * Constructor of the class
      * @param v Reference to the main view that this controller controls
      * @param c Reference to the network class in order to comunicate with the server
-     * @return The constructor returns the class it creates
 
      */
     public PrincipalController(VistaPrincipal v, ComunicationServer c) {
@@ -133,8 +132,6 @@ public class PrincipalController implements ActionListener {
     /***
      * Setter for the main page's visibility
      * @param b Boolean to determine whether to hide or show the window
-     * @return The constructor returns the class it creates
-
      */
     public void setViewEnabled(boolean b) {
         vistaPrincipal.setVisible(b);

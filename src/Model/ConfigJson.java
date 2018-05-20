@@ -1,5 +1,9 @@
 package Model;
 
+
+/**
+ * Class used to store data necessary to make the connection with the server
+ */
 public class ConfigJson {
     private int port_server;
     private String ip;

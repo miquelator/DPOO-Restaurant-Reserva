@@ -5,6 +5,9 @@ import Vista.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller of the login view
+ */
 public class LoginController implements ActionListener {
     private PrincipalController parent;
     private LoginView loginView;
@@ -14,7 +17,6 @@ public class LoginController implements ActionListener {
      * Constructor of the class
      * @param parent Reference to the origin window
      * @param loginView Reference to login window
-     * @return The constructor returns the class it creates
 
      */
 

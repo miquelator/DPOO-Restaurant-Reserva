@@ -6,6 +6,9 @@ import Vista.VistaPrincipal;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Class to control what to do when the order window closes
+ */
 public class CartaWindowClosing extends WindowAdapter {
     private VistaPrincipal parent;
     private VistaPlats vistaPlats;

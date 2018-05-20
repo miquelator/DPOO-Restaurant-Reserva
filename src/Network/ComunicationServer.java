@@ -10,6 +10,11 @@ import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 
+
+
+/**
+ * Class that allows for the communication with the server
+ */
 public class ComunicationServer extends Thread{
 
 
